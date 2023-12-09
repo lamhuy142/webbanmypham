@@ -16,6 +16,7 @@ class MYPHAM
     private $luotxem;
     private $mota;
     private $tinhtrang;
+    private $hinhanh;
     
     public function getid()
     {
@@ -130,6 +131,14 @@ class MYPHAM
     {
         $this->luotmua = $value;
     }
+    public function gethinhanh()
+    {
+        return $this->hinhanh;
+    }
+    public function sethinhanh($value)
+    {
+        $this->hinhanh = $value;
+    }
 
 
     // Lấy danh sách
@@ -239,8 +248,8 @@ class MYPHAM
         $dbcon = DATABASE::connect();
         try {
             $sql = "INSERT INTO 
-mypham(tenmp,loai_id,thuonghieu,hinhanh1,hinhanh2,hinhanh3,giagoc,giaban,soluong,luotmua,luotxem,mota,tinhtrang) 
-VALUES(:tenmp,:loai_id,:thuonghieu,:hinhanh1,:hinhanh2,:hinhanh3,:giagoc,:giaban,:soluongton,0,0,:mota,1)";
+mypham(tenmp,loai_id,thuonghieu,hinhanh1,hinhanh2,hinhanh3,giagoc,giaban,soluong,luotmua,luotxem,mota,tinhtrang, hinhanh) 
+VALUES(:tenmp,:loai_id,:thuonghieu,:hinhanh1,:hinhanh2,:hinhanh3,:giagoc,:giaban,:soluongton,0,0,:mota,1,:hinhanh)";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":tenmp", $mypham->tenmp);
             $cmd->bindValue(":loai_id", $mypham->loai_id);
@@ -252,6 +261,7 @@ VALUES(:tenmp,:loai_id,:thuonghieu,:hinhanh1,:hinhanh2,:hinhanh3,:giagoc,:giaban
             $cmd->bindValue(":giaban", $mypham->giaban);
             $cmd->bindValue(":soluong", $mypham->soluong);
             $cmd->bindValue(":mota", $mypham->mota);
+            $cmd->bindValue(":hinhanh", $mypham->hinhanh);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -294,6 +304,7 @@ VALUES(:tenmp,:loai_id,:thuonghieu,:hinhanh1,:hinhanh2,:hinhanh3,:giagoc,:giaban
             luotxem=:luotxem,
             mota=:mota,
             tinhtrang=:tinhtrang,
+            hinhanh=:hinhanh,
             WHERE id=:id";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":tenmp", $mypham->tenmp);
@@ -309,6 +320,7 @@ VALUES(:tenmp,:loai_id,:thuonghieu,:hinhanh1,:hinhanh2,:hinhanh3,:giagoc,:giaban
             $cmd->bindValue(":luotxem", $mypham->luotxem);
             $cmd->bindValue(":mota", $mypham->mota);
             $cmd->bindValue(":tinhtrang", $mypham->tinhtrang);
+            $cmd->bindValue(":hinhanh", $mypham->hinhanh);
             $cmd->bindValue(":id", $mypham->id);
             $result = $cmd->execute();
             return $result;
