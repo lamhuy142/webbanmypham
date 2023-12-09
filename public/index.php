@@ -15,8 +15,13 @@ $lmp = new LOAIMYPHAM();
 
 switch ($action) {
     case "macdinh":
+        $loai = $lmp->layloaimypham();
         $mypham = $mp->laymypham();
         include("main.php");
+        break;
+    case "xemtatca":
+        $mypham = $mp->laymypham();
+        include("shop.php");
         break;
 
     default:

@@ -50,20 +50,28 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  ">
-                        <li class="nav-item active">
+                        <li class="nav-item 
+                        <?php if (strpos($_SERVER["REQUEST_URI"], "index") != false) echo "active"; ?>
+                        ">
                             <a class="nav-link" href="index.php">Trang Chủ </a> <!-- <span class="sr-only">(current)</span>-->
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item
+                        <?php if (strpos($_SERVER["REQUEST_URI"], "shop") != false) echo "active"; ?>
+                        ">
                             <a class="nav-link" href="shop.php">
                                 Cửa Hàng
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item
+                        <?php if (strpos($_SERVER["REQUEST_URI"], "about") != false) echo "active"; ?>
+                        ">
                             <a class="nav-link" href="about.php">
                                 Giới Thiệu
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item
+                        <?php if (strpos($_SERVER["REQUEST_URI"], "contact") != false) echo "active"; ?>
+                        ">
                             <a class="nav-link" href="contact.php">Liên Hệ</a>
                         </li>
                     </ul>
@@ -87,78 +95,6 @@
             </nav>
         </header>
         <!-- end header section -->
-        <!-- slider section -->
-
-        <section class="slider_section">
-            <div class="slider_container">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-7">
-                                        <div class="detail-box">
-                                            <h1>
-                                                Chào Mừng Đến Với <br>
-                                                LH Shop
-                                            </h1>
-                                            <h4>
-                                                Phụ nữ hiện đại, đánh son không đánh ghen.
-                                            </h4>
-                                            <a href="">
-                                                Liên Hệ
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 ">
-                                        <div class="img-box">
-                                            <img src="images/slider-img.png" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item ">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-7">
-                                        <div class="detail-box">
-                                            <h1>
-                                                Chào Mừng Đến Với <br>
-                                                LH Shop
-                                            </h1>
-                                            <h4>
-                                                Phụ nữ hiện đại, đánh son không đánh ghen.
-                                            </h4>
-                                            <a href="">
-                                                Liên Hệ
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 ">
-                                        <div class="img-box">
-                                            <img src="images/slider-img.png" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel_btn-box">
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <img src="images/line.png" alt="" />
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- end slider section -->
+        
     </div>
     <!-- end hero area -->
