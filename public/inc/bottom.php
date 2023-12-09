@@ -23,7 +23,7 @@
                         GIỚI THIỆU
                     </h6>
                     <p>
-                        Cửa hàng mỹ phẩm của chúng tôi cung cấp sự đa dạng và chất lượng cao với hàng trăm sản phẩm chăm sóc cá nhân. Chúng tôi cam kết đem đến sự tiện lợi và an toàn cho trải nghiệm mua sắm của bạn. Hãy khám phá ngay! 
+                        Cửa hàng mỹ phẩm của chúng tôi cung cấp sự đa dạng và chất lượng cao với hàng trăm sản phẩm chăm sóc cá nhân. Chúng tôi cam kết đem đến sự tiện lợi và an toàn cho trải nghiệm mua sắm của bạn. Hãy khám phá ngay!
                     </p>
                 </div>
                 <div class="col-md-6 col-lg-3">
@@ -45,11 +45,11 @@
                     </h6>
                     <p>
                         Hãy để chúng tôi giúp bạn tìm kiếm những giải pháp làm đẹp tốt nhất và mang lại sự hài lòng cho bạn. Liên hệ ngay để được hỗ trợ!
-                     </p>
+                    </p>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <h6>
-                        THÔNG TIN LIÊN HỆ 
+                        THÔNG TIN LIÊN HỆ
                     </h6>
                     <div class="info_link-box">
                         <a href="">
@@ -83,12 +83,12 @@
 
 <!-- end info section -->
 
-
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<!-- js/jquery-3.4.1.min.js, js/bootstrap.js,js/custom.js -->
+<script src="../public/inc/js/jquery-3.4.1.min.js"></script>
+<script src="../public/inc/js/bootstrap.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
 </script>
-<script src="js/custom.js"></script>
+<script src="../public/inc/js/custom.js"></script>
 
 </body>
 
