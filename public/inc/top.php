@@ -56,9 +56,9 @@
                             <a class="nav-link" href="index.php">Trang Chủ </a> <!-- <span class="sr-only">(current)</span>-->
                         </li>
                         <li class="nav-item
-                        <?php if (strpos($_SERVER["REQUEST_URI"], "shop") != false) echo "active"; ?>
+                        <?php if (strpos($_SERVER["REQUEST_URI"], "") != false) echo "active"; ?>
                         ">
-                            <a class="nav-link" href="shop.php">
+                            <a class="nav-link" href="index.php?action=xemtatca">
                                 Cửa Hàng
                             </a>
                         </li>
@@ -76,7 +76,7 @@
                         </li>
                     </ul>
                     <div class="user_option">
-                        <a href="">
+                        <a href="login.php">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <span>
                                 Đăng Nhập
@@ -86,15 +86,21 @@
                             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                         </a>
                         <form class="form-inline ">
-                            <button class="btn nav_search-btn" type="submit">
+                            <div class="input-group rounded">
+                                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                <span class="input-group-text border-0" id="search-addon">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <!-- <button class="btn nav_search-btn" type="submit">
                                 <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
+                            </button> -->
                         </form>
                     </div>
                 </div>
             </nav>
         </header>
         <!-- end header section -->
-        
+
     </div>
     <!-- end hero area -->

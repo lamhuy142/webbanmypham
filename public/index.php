@@ -23,7 +23,14 @@ switch ($action) {
         $mypham = $mp->laymypham();
         include("shop.php");
         break;
+    case "xulydangnhap":
+        
+        include("main.php");
+        break;
+    case "dangky":
 
+        include("dangky.php");
+        break;
     default:
         break;
 }
