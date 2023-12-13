@@ -17,8 +17,9 @@
             <div class="col-sm-6 col-md-4 col-lg-3">
               <div class="card">
                 <!-- Top Card -->
-                <a href="">
-                  <img width="100%" class=" card-img-top" src="./images/<?php echo $m["hinhanh1"]; ?>" alt="">
+                <a href="index.php?action=chitiet&id=<?php echo $m["id"]; ?>">
+                  <img width="100%" class=" card-img-top" src="./images/products/<?php echo $m["hinhanh1"]; ?>" alt="">
+
                   <!-- End Top Card -->
 
                   <!-- Body Card -->
@@ -38,47 +39,48 @@
                         <?php echo mb_substr($m["tenmp"], 0, 45) . "..."; ?>
                       </h6>
                     </div>
-                    <div class="detail-box">
-                      <h6>
-                        <!-- Product price-->
-                        <?php if ($m["giaban"] != $m["giagoc"]) { ?>
-                          <span class="text-muted text-decoration-line-through"><?php echo number_format($m["giagoc"]); ?>đ</span><?php } // end if 
-                                                                                                                                  ?>
-                        <span class="text-danger fw-bolder"><?php echo number_format($m["giaban"]); ?>đ</span>
-                      </h6>
-                    </div>
-                    <!-- Product reviews-->
-                    <div class="detail-box">
-                      <div class="d-flex justify-content small text-warning mb-2">
-                        <div class="bi-star-fill"></div>
-                        <div class="bi-star-fill"></div>
-                        <div class="bi-star-fill"></div>
-                        <div class="bi-star-fill"></div>
-                        <div class="bi-star-fill"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Body Card -->
-
-                  <!-- Footer Card -->
-                  <!-- Product actions-->
-                  <div class="card-footer p-2 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-info mt-auto" href="index.php?action=chovaogio&id=<?php echo $m["id"]; ?>&soluong=1">
-                        Chọn mua</a></div>
-                  </div>
-                  <!-- End Footer Card -->
                 </a>
+                <div class="detail-box">
+                  <h6>
+                    <!-- Product price-->
+                    <?php if ($m["giaban"] != $m["giagoc"]) { ?>
+                      <span class="text-muted text-decoration-line-through"><?php echo number_format($m["giagoc"]); ?>đ</span><?php } // end if 
+                                                                                                                              ?>
+                    <span class="text-danger fw-bolder"><?php echo number_format($m["giaban"]); ?>đ</span>
+                  </h6>
+                </div>
+                <!-- Product reviews-->
+                <div class="detail-box">
+                  <div class="d-flex justify-content small text-warning mb-2">
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                  </div>
+                </div>
               </div>
+              <!-- End Body Card -->
+
+              <!-- Footer Card -->
+              <!-- Product actions-->
+              <div class="card-footer p-2 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><a class="btn btn-outline-info mt-auto" href="index.php?action=chovaogio&id=<?php echo $m["id"]; ?>&soluong=1">
+                    Chọn mua</a></div>
+              </div>
+              <!-- End Footer Card -->
+
             </div>
-      <?php }
+      </div>
+<?php }
         endforeach;
       endforeach; ?>
-      </div>
-      <div class="btn-box">
-        <a href="index.php?action=xemtatca">
-          Xem Tất Cả
-        </a>
-      </div>
+  </div>
+  <div class="btn-box">
+    <a href="index.php?action=xemtatca">
+      Xem Tất Cả
+    </a>
+  </div>
   </div>
 </section>
 
@@ -92,7 +94,7 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="img-box">
-            <img src="images/saving-img.png" alt="">
+            <img src="images/products/saving-img.png" alt="">
           </div>
         </div>
         <div class="col-lg-6">
@@ -132,7 +134,7 @@
         <div class="col-md-5">
           <div class="img_container">
             <div class="img-box">
-              <img src="images/gifts.png" alt="">
+              <img src="images/products/gifts.png" alt="">
             </div>
           </div>
         </div>

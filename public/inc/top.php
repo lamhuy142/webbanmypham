@@ -11,7 +11,7 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/carousel/makeup.jpg" type="image/x-icon">
 
     <title>
         Mỹ Phẩm
@@ -28,10 +28,10 @@
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="../public/inc/css/bootstrap.css" />
 
-    <!-- Custom styles for this template /css/style.css -->
+    <!-- Custom styles for this template /css/style.css-->
     <link href="../public/inc/css/style.css" rel="stylesheet" />
-    <!-- responsive style /css/responsive.css-->
-    <link href="../public/inc/css/responsive.css" rel="stylesheet" />
+    <!--responsive style /css/responsive.css-->
+    <link href="../public/inc/css/responsive.css" rel="stylesheet" /> 
 </head>
 
 <body>
