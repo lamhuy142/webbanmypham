@@ -32,8 +32,9 @@ switch ($action) {
             $mpct = $mp->laymyphamtheoid($id_mp);
             // lấy các sản phẩm cùng danh mục
             $loai_id = $mpct["loai_id"];
-            $mypham = $mp->laymyphamtheoloai($loai_id);
-            include("chitiet.php");
+            // $mypham = $mp->laymyphamtheoloai($loai_id);
+            $mypham = $mp->laymypham();
+            include("detail.php");
         }
         break;
     case "xulydangnhap":
