@@ -15,7 +15,7 @@
           <div class="card">
             <!-- Top Card -->
             <a href="index.php?action=chitiet&id=<?php echo $m['id']; ?>">
-              <img width="100%" class=" card-img-top" src="./images/<?php echo $m["hinhanh1"]; ?>" alt="">
+              <img width="100%" class=" card-img-top" src="./images/products/<?php echo $m["hinhanh"]; ?>" alt="">
               <!-- End Top Card -->
 
               <!-- Body Card -->

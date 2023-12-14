@@ -44,7 +44,7 @@
             <?php foreach ($mypham as $m) :
                 if ($m["id"] != $mpct["id"]) { ?>
                     <div class="col mb-5">
-                        <div class="card h-25">
+                        <div class=" card h-25">
                             <!-- Product image-->
                             <img width="50px" class="card-img-top" src="./images/products/<?php echo $m['hinhanh1']; ?>" alt="<?php echo $m['hinhanh1']; ?>" />
                             <!-- Product details-->
