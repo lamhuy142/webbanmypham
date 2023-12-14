@@ -26,12 +26,12 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="../public/inc/css/bootstrap.css" />
-
+    <link rel="stylesheet" type="text/css" href="../../public/inc/css/bootstrap.css" />
     <!-- Custom styles for this template /css/style.css-->
-    <link href="../public/inc/css/style.css" rel="stylesheet" />
+    <link href="../../public/inc/css/style.css" rel="stylesheet" />
     <!--responsive style /css/responsive.css-->
-    <link href="../public/inc/css/responsive.css" rel="stylesheet" /> 
+    <link href="../../public/inc/css/responsive.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -76,11 +76,12 @@
                         </li>
                     </ul>
                     <div class="user_option">
-                        <a href="login.php">
+                        <a href="index.php?action=dangnhap">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <span>
                                 Đăng Nhập
                             </span>
+
                         </a>
                         <a href="">
                             <i class="fa fa-shopping-bag" aria-hidden="true"></i>

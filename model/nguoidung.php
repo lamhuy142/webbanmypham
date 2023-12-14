@@ -84,9 +84,43 @@ class NGUOIDUNG
     {
         $this->tennd = $value;
     }
-    
 
 
+    public function kiemtranguoidunghople($email, $matkhau)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM nguoidung WHERE email=:email AND matkhau=:matkhau AND tinhtrang=1";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(":email", $email);
+            $cmd->bindValue(":matkhau", md5($matkhau));
+            $cmd->execute();
+            $valid = ($cmd->rowCount() == 1);
+            $cmd->closeCursor();
+            return $valid;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function laythongtinnguoidung($email)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM nguoidung WHERE email=:email";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(":email", $email);
+            $cmd->execute();
+            $ketqua = $cmd->fetch();
+            $cmd->closeCursor();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     // Lấy danh sách
     public function laynguoidung()
     {
@@ -255,6 +289,22 @@ VALUES(:matkhau,:loaind_id,:diachi,:email,:sdt,:hinhanh,:tinhtrang,:tennd)";
             $cmd->bindValue(":id", $nguoidung->id);
             $result = $cmd->execute();
             return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function doitinhtrang($id, $tinhtrang)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "UPDATE nguoidung set tinhtrang=:tinhtrang where id=:id";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':id', $id);
+            $cmd->bindValue(':tinhtrang', $tinhtrang);
+            $ketqua = $cmd->execute();
+            return $ketqua;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

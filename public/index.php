@@ -2,8 +2,11 @@
 require("../model/database.php");
 require("../model/mypham.php");
 require("../model/loaimypham.php");
+require("../model/nguoidung.php");
 
 // Xét xem có thao tác nào được chọn
+// Biến $isLogin cho biết người dùng đăng nhập chưa
+$isLogin = isset($_SESSION["nguoidung"]);
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
 } else {   // mặc định là xem danh sách
@@ -12,6 +15,7 @@ if (isset($_REQUEST["action"])) {
 
 $mp = new MYPHAM();
 $lmp = new LOAIMYPHAM();
+$nd = new NGUOIDUNG();
 
 switch ($action) {
     case "macdinh":
@@ -37,9 +41,22 @@ switch ($action) {
             include("detail.php");
         }
         break;
+    case "dangnhap":
+        include("login.php");
+        break;
     case "xulydangnhap":
-        
-        include("main.php");
+        $email = $_POST["txtemail"];
+        $matkhau= $_POST["txtmatkhau"];
+        if ($nd->kiemtranguoidunghople($email, $matkhau) == TRUE) {
+            $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email);
+            if ($_SESSION["nguoidung"]["loaind_id"] == "3") {
+                $mypham = $mp->laymypham();
+                include("main.php");
+            } else {
+            }
+        } else {
+            include("login.php");
+        }
         break;
     case "dangky":
 

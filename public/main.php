@@ -3,7 +3,7 @@
 
 <section class="shop_section layout_padding">
   <div class="container">
-    <?php foreach ($loai as $l) :
+    <?php foreach($loai as $l):
       $i = 0; ?>
       <div class="heading_container heading_center p-4">
         <h2 class="">
