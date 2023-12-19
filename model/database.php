@@ -1,7 +1,7 @@
 <?php
 class DATABASE
 {
-    private static $dns = "mysql:host=localhost;dbname=mypham;port=3306";
+    private static $dns = "mysql:host=localhost;dbname=chmypham;port=3306";
     private static $username = "root";
     private static $password = ""; //vertrigo
     private static $options = array(

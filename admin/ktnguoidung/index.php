@@ -18,7 +18,20 @@ switch ($action) {
     case "macdinh":
         include("main.php");
         break;
-    
+    case "dangnhap":
+        include("login.php");
+        break;
+    case "xulydangnhap":
+        $email = $_POST["txtemail"];
+        $matkhau = $_POST["txtpassword"];
+        if ($nd->kiemtranguoidunghople($email, $matkhau) == TRUE) {
+            $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email);
+            include("main.php");
+            // } elseif( $_SESSION["nguoidung"]["loai"] == 3 ){
+            //     include("../../public/main.php");
+        } else {
+            include("login.php");
+        }
     default:
         break;
 }

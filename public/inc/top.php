@@ -51,12 +51,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  ">
                         <li class="nav-item 
-                        <?php if (strpos($_SERVER["REQUEST_URI"], "index") != false) echo "active"; ?>
+                        <?php if (strpos($_SERVER["REQUEST_URI"], "macdinh") != false) echo "active"; ?>
                         ">
-                            <a class="nav-link" href="index.php">Trang Chủ </a> <!-- <span class="sr-only">(current)</span>-->
+                            <a class="nav-link" href="index.php?action=macdinh">Trang Chủ </a> <!-- <span class="sr-only">(current)</span>-->
                         </li>
                         <li class="nav-item
-                        <?php if (strpos($_SERVER["REQUEST_URI"], "") != false) echo "active"; ?>
+                        <?php if (strpos($_SERVER["REQUEST_URI"], "xemtatca") != false) echo "active"; ?>
                         ">
                             <a class="nav-link" href="index.php?action=xemtatca">
                                 Cửa Hàng

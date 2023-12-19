@@ -248,8 +248,8 @@ class MYPHAM
         $dbcon = DATABASE::connect();
         try {
             $sql = "INSERT INTO 
-mypham(tenmp,loai_id,thuonghieu,hinhanh1,hinhanh2,hinhanh3,giagoc,giaban,soluong,luotmua,luotxem,mota,tinhtrang, hinhanh) 
-VALUES(:tenmp,:loai_id,:thuonghieu,:hinhanh1,:hinhanh2,:hinhanh3,:giagoc,:giaban,:soluongton,0,0,:mota,1,:hinhanh)";
+mypham(tenmp,loai_id,thuonghieu,hinhanh1,hinhanh2,hinhanh3,giagoc,giaban,soluong,luotmua,luotxem,mota,tinhtrang,hinhanh) 
+VALUES(:tenmp,:loai_id,:thuonghieu,:hinhanh1,:hinhanh2,:hinhanh3,:giagoc,:giaban,:soluong,0,0,:mota,1,:hinhanh)";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":tenmp", $mypham->tenmp);
             $cmd->bindValue(":loai_id", $mypham->loai_id);
