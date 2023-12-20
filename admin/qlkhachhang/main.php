@@ -46,14 +46,20 @@
                                         <td><?php echo $n["diachi"]; ?></td>
                                         <td><?php echo $l["tenlnd"]; ?></td>
                                         <?php if ($n["tinhtrang"] == 1) { ?>
-                                            <td class="text-info">Hoạt động</td>
+                                            <td class="text-success">Hoạt động</td>
                                         <?php } //end if tinhtrang 
                                         else {
                                         ?>
                                             <td class="text-danger">Khóa</td>
                                         <?php }  ?>
                                         <td>
-                                            <a href="index.php?action=khoa&id=<?php echo $n['id']; ?>&tinhtrang=<?php echo $n['tinhtrang']; ?>" class="btn btn-warning">Khóa</a>
+                                            <!-- <a href="index.php?action=khoa&id=<?php echo $n['id']; ?>&tinhtrang=<?php echo $n['tinhtrang']; ?>" class="btn btn-warning">Khóa</a> -->
+                                            <?php if ($n["tinhtrang"] == 1) { ?>
+                                                <a href="index.php?action=khoa&id=<?php echo $n['id']; ?>&tinhtrang=<?php echo $n['tinhtrang']; ?>" class="btn btn-warning">Khóa</a>
+                                            <?php } else {
+                                            ?>
+                                                <a href="index.php?action=khoa&id=<?php echo $n['id']; ?>&tinhtrang=<?php echo $n['tinhtrang']; ?>" class="btn btn-info">Mở</a>
+                                            <?php } ?>
                                             <a href="index.php?action=xoa&id=<?php echo  $n['id']; ?>" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a>
                                         </td>
                                     </tr>
@@ -63,7 +69,6 @@
                         endforeach; ?>
                     </tbody>
                 </table>
-                <p><a class="btn btn-info" href="index.php?action=them">Thêm người dùng</a></p>
             </div>
         </div>
     </div>

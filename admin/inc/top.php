@@ -13,6 +13,8 @@
     <!-- bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
     <!-- Custom fonts for this template-->
     <link href="../../admin/inc/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -64,6 +66,14 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Quản lý người dùng</span></a>
             </li>
+            <!-- Nav Item - NGUOIDUNG -->
+            <li class="nav-item
+            <?php if (strpos($_SERVER["REQUEST_URI"], "qlkhachhang") != false) echo "active"; ?>
+            ">
+                <a class="nav-link" href="../qlkhachhang/index.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Quản lý khách hàng</span></a>
+            </li>
             <!-- Nav Item - MYPHAM -->
             <li class="nav-item
             <?php if (strpos($_SERVER["REQUEST_URI"], "qlmypham") != false) echo "active"; ?>
@@ -72,13 +82,13 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Quản lý mỹ phẩm</span></a>
             </li>
-            <!-- Nav Item - NGUOIDUNG -->
+            <!-- Nav Item - ĐƠN HÀNG -->
             <li class="nav-item
-            <?php if (strpos($_SERVER["REQUEST_URI"], "qlkhachhang") != false) echo "active"; ?>
+            <?php if (strpos($_SERVER["REQUEST_URI"], "qlhoadon") != false) echo "active"; ?>
             ">
-                <a class="nav-link" href="../qlkhachhang/index.php">
+                <a class="nav-link" href="../qlhoadon/index.php">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Quản lý khách hàng</span></a>
+                    <span>Quản lý hóa đơn</span></a>
             </li>
 
             <!-- Divider -->

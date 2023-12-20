@@ -47,13 +47,21 @@
                                         <td><?php echo $n["diachi"]; ?></td>
                                         <td><?php echo $l["tenlnd"]; ?></td>
                                         <?php if ($n["tinhtrang"] == 1) { ?>
-                                            <td class="text-info">Hoạt động</td>
+                                            <td class="text-success">Hoạt động</td>
                                         <?php } //end if tinhtrang 
                                         else {
                                         ?>
                                             <td class="text-danger">Khóa</td>
                                         <?php }  ?>
-                                        <td><a href="index.php?action=khoa&id=<?php echo $n['id']; ?>&tinhtrang=<?php echo $n['tinhtrang']; ?>" class="btn btn-warning">Khóa</a></td>
+
+                                        <td>
+                                            <?php if ($n["tinhtrang"] == 1) { ?>
+                                                <a href="index.php?action=khoa&id=<?php echo $n['id']; ?>&tinhtrang=<?php echo $n['tinhtrang']; ?>" class="btn btn-danger">Khóa</a>
+                                            <?php } else {
+                                            ?>
+                                                <a href="index.php?action=khoa&id=<?php echo $n['id']; ?>&tinhtrang=<?php echo $n['tinhtrang']; ?>" class="btn btn-warning">Mở</a>
+                                            <?php } ?>
+                                        </td>
                                     </tr>
                         <?php
                                 } //end if

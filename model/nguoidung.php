@@ -228,10 +228,10 @@ class NGUOIDUNG
         $dbcon = DATABASE::connect();
         try {
             $sql = "INSERT INTO 
-nguoidung(matkhau,loaind_id,diachi,email,sdt,hinhanh,tinhtrang,tennd,) 
+nguoidung(matkhau,loaind_id,diachi,email,sdt,hinhanh,tinhtrang,tennd) 
 VALUES(:matkhau,:loaind_id,:diachi,:email,:sdt,:hinhanh,:tinhtrang,:tennd)";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":matkhau", $nguoidung->matkhau);
+            $cmd->bindValue(":matkhau", md5($nguoidung->matkhau));
             $cmd->bindValue(":loaind_id", $nguoidung->loaind_id);
             $cmd->bindValue(":diachi", $nguoidung->diachi);
             $cmd->bindValue(":email", $nguoidung->email);
