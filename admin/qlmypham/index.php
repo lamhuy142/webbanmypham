@@ -90,29 +90,56 @@ switch ($action) {
     case "xulysua": // lưu dữ liệu sửa mới vào db
 
         // gán dữ liệu từ form
-        $spsua = new SANPHAM();
-        $spsua->setid($_POST["txtid"]);
-        $spsua->setmota($_POST["txtmota"]);
-        $spsua->setphanloaisp($_POST["optphanloai"]);
-        $spsua->settensp($_POST["txttensp"]);
-        $spsua->setgiagoc($_POST["txtgiagoc"]);
-        $spsua->setgiaban($_POST["txtgiaban"]);
-        $spsua->setsoluongton($_POST["txtsoluongton"]);
-        $spsua->sethinhanh($_POST["txthinhcu"]);
-        $spsua->setluotxem($_POST["txtluotxem"]);
-        $spsua->setluotmua($_POST["txtluotmua"]);
+        $sua = new MYPHAM();
+        $sua->setid($_POST["id"]);
+        $sua->setthuonghieu($_POST["txtthuonghieu"]);
+        $sua->setmota($_POST["txtmota"]);
+        $sua->setloai_id($_POST["optphanloai"]);
+        $sua->settenmp($_POST["txttenmp"]);
+        $sua->setgiagoc($_POST["txtgiagoc"]);
+        $sua->setgiaban($_POST["txtgiaban"]);
+        $sua->setsoluong($_POST["txtsoluongton"]);
+        $sua->sethinhanh($_POST["txthinh"]);
+        $sua->sethinhanh1($_POST["txthinh1"]);
+        $sua->sethinhanh2($_POST["txthinh2"]);
+        $sua->sethinhanh3($_POST["txthinh3"]);
+        $sua->setluotxem($_POST["txtluotxem"]);
+        $sua->setluotmua($_POST["txtluotmua"]);
+        $sua->settinhtrang($_POST["txttinhtrang"]);
 
         if ($_FILES["filehinhanh"]["name"] != "") {
             //xử lý load ảnh
-            $hinhanh = "images/products/" . basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
-            $spsua->sethinhanh($hinhanh);
-            $duongdan = "../../" . $hinhanh; //nơi lưu file upload
+            $hinhanh = basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
+            $sua->sethinhanh($hinhanh);
+            $duongdan = "../../img/products/" . $hinhanh; //nơi lưu file upload
             move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
         }
+        if ($_FILES["filehinhanh1"]["name"] != "") {
+            //xử lý load ảnh
+            $hinhanh1 = basename($_FILES["filehinhanh1"]["name"]); // đường dẫn ảnh lưu trong db
+            $sua->sethinhanh1($hinhanh1);
+            $duongdan1 = "../../img/products/" . $hinhanh1; //nơi lưu file upload
+            move_uploaded_file($_FILES["filehinhanh1"]["tmp_name"], $duongdan1);
+        }
+        if ($_FILES["filehinhanh2"]["name"] != "") {
+            //xử lý load ảnh
+            $hinhanh2 = basename($_FILES["filehinhanh2"]["name"]); // đường dẫn ảnh lưu trong db
+            $sua->sethinhanh2($hinhanh2);
+            $duongdan2 = "../../img/products/" . $hinhanh2; //nơi lưu file upload
+            move_uploaded_file($_FILES["filehinhanh2"]["tmp_name"], $duongdan2);
+        }
+        if ($_FILES["filehinhanh3"]["name"] != "") {
+            //xử lý load ảnh
+            $hinhanh3 = basename($_FILES["filehinhanh3"]["name"]); // đường dẫn ảnh lưu trong db
+            $sua->sethinhanh3($hinhanh3);
+            $duongdan3 = "../../img/products/" . $hinhanh3; //nơi lưu file upload
+            move_uploaded_file($_FILES["filehinhanh3"]["tmp_name"], $duongdan3);
+        }
         // sửa
-        $sp->suasanpham($spsua);
+        $mp->suamypham($sua);
         // load danh sách
-        $sanpham = $sp->laysanpham();
+        $loai = $lmp->layloaimypham();
+        $mypham = $mp->laymypham();
         include("main.php");
         break;
     default:

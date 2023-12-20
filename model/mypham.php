@@ -300,11 +300,11 @@ VALUES(:tenmp,:loai_id,:thuonghieu,:hinhanh1,:hinhanh2,:hinhanh3,:giagoc,:giaban
             giagoc=:giagoc,
             giaban=:giaban,
             soluong=:soluong,
-            luotmua=:luotmua
+            luotmua=:luotmua,
             luotxem=:luotxem,
             mota=:mota,
             tinhtrang=:tinhtrang,
-            hinhanh=:hinhanh,
+            hinhanh=:hinhanh
             WHERE id=:id";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":tenmp", $mypham->tenmp);

@@ -63,15 +63,28 @@
                 <div class="row g-3">
                     <div class="col my-3">
                         <label>Hình ảnh</label><br>
-                        <input type="hidden" name="txthinhcu" value="<?php echo $s["hinhanh"]; ?>">
-                        <img src="../../<?php echo $s["hinhanh"]; ?>" width="50" class="img-thumbnail">
-                        <a data-bs-toggle="collapse" data-bs-target="#demo">Đổi hình ảnh</a>
-                        <div id="demo" class="collapse m-3">
-                            <input type="file" class="form-control" name="filehinhanh">
-                            <input type="file" class="form-control" name="filehinhanh1">
-                            <input type="file" class="form-control" name="filehinhanh2">
-                            <input type="file" class="form-control" name="filehinhanh3">
+                        <input type="hidden" name="txthinh" value="<?php echo $mpht["hinhanh"]; ?>">
+                        <img src="../../img/products/<?php echo $mpht["hinhanh"]; ?>" width="100px" class="img-thumbnail">
+                        <input type="hidden" name="txthinh1" value="<?php echo $mpht["hinhanh1"]; ?>">
+                        <img src="../../img/products/<?php echo $mpht["hinhanh1"]; ?>" width="100px" class="img-thumbnail">
+                        <input type="hidden" name="txthinh2" value="<?php echo $mpht["hinhanh2"]; ?>">
+                        <img src="../../img/products/<?php echo $mpht["hinhanh2"]; ?>" width="100px" class="img-thumbnail">
+                        <input type="hidden" name="txthinh3" value="<?php echo $mpht["hinhanh3"]; ?>">
+                        <img src="../../img/products/<?php echo $mpht["hinhanh3"]; ?>" width="100px" class="img-thumbnail">
+                        <p>
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Đổi hình ảnh
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                <input type="file" class="form-control" name="filehinhanh">
+                                <input type="file" class="form-control" name="filehinhanh1">
+                                <input type="file" class="form-control" name="filehinhanh2">
+                                <input type="file" class="form-control" name="filehinhanh3">
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="my-3">
