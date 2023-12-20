@@ -1,12 +1,13 @@
 <?php
-class CHITITETHOADON
+class GIOHANG
 {
     // khai báo các thuộc tính
     private $id;
-    private $hoadon_id;
-    private $chitiethoadon_id;
+    private $nguoidung_id;
+    private $mypham_id;
     private $soluong;
     private $thanhtien;
+
 
     public function getid()
     {
@@ -16,29 +17,21 @@ class CHITITETHOADON
     {
         $this->id = $value;
     }
-    public function gethoadon_id()
+    public function getnguoidung_id()
     {
-        return $this->hoadon_id;
+        return $this->nguoidung_id;
     }
-    public function sethoadon_id($value)
+    public function setnguoidung_id($value)
     {
-        $this->hoadon_id = $value;
+        $this->nguoidung_id = $value;
     }
-    public function getchitiethoadon_id()
+    public function getmypham_id()
     {
-        return $this->chitiethoadon_id;
+        return $this->mypham_id;
     }
-    public function setchitiethoadon_id($value)
+    public function setmypham_id($value)
     {
-        $this->chitiethoadon_id = $value;
-    }
-    public function getthanhtien()
-    {
-        return $this->thanhtien;
-    }
-    public function setthanhtien($value)
-    {
-        $this->thanhtien = $value;
+        $this->mypham_id = $value;
     }
     public function getsoluong()
     {
@@ -48,13 +41,21 @@ class CHITITETHOADON
     {
         $this->soluong = $value;
     }
+    public function getthanhtien()
+    {
+        return $this->thanhtien;
+    }
+    public function setthanhtien($value)
+    {
+        $this->thanhtien = $value;
+    }
 
     // Lấy danh sách
-    public function laychitiethoadon()
+    public function laygiohang()
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM chitiethoadon ORDER BY id DESC ";
+            $sql = "SELECT * FROM giohang ORDER BY id DESC ";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -66,13 +67,13 @@ class CHITITETHOADON
         }
     }
     // Tìm kiếm 
-    public function timkiemchitiethoadon($search)
+    public function timkiemgiohang($search)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM chitiethoadon c, mypham m where m.id = c.mypham_id AND m.hoadon_id like '%$search%'  "; //OR p.tenpl like '%$search%'
+            $sql = "SELECT * FROM giohang  where mypham_id like '%$search%'  "; //OR p.tenpl like '%$search%'
             $cmd = $dbcon->prepare($sql);
-            // $cmd->bindValue(":hoadon_id", $search);
+            // $cmd->bindValue(":nguoidung_id", $search);
             $cmd->execute();
             $result = $cmd->fetchAll();
             return $result;
@@ -84,11 +85,11 @@ class CHITITETHOADON
     }
 
     // // Lấy danh sách mặt hàng thuộc 1 danh mục
-    // public function laychitiethoadontheoloai($loaisp)
+    // public function laygiohangtheoloai($loaisp)
     // {
     //     $dbcon = DATABASE::connect();
     //     try {
-    //         $sql = "SELECT * FROM chitiethoadon WHERE mypham_id=:madm";
+    //         $sql = "SELECT * FROM giohang WHERE mypham_id=:madm";
     //         $cmd = $dbcon->prepare($sql);
     //         $cmd->bindValue(":madm", $loaisp);
     //         $cmd->execute();
@@ -101,12 +102,12 @@ class CHITITETHOADON
     //     }
     // }
 
-    // Lấy mặt hàng theo id
-    public function laychitiethoadontheoid($id)
+    // Lấy giohang theo id
+    public function laygiohangtheoid($id)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM chitiethoadon WHERE id=:id";
+            $sql = "SELECT * FROM giohang WHERE id=:id";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":id", $id);
             $cmd->execute();
@@ -123,7 +124,7 @@ class CHITITETHOADON
     // {
     //     $dbcon = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE chitiethoadon SET luotxem=luotxem+1 WHERE id=:id";
+    //         $sql = "UPDATE giohang SET luotxem=luotxem+1 WHERE id=:id";
     //         $cmd = $dbcon->prepare($sql);
     //         $cmd->bindValue(":id", $id);
     //         $result = $cmd->execute();
@@ -134,12 +135,12 @@ class CHITITETHOADON
     //         exit();
     //     }
     // }
-    // // Lấy mặt hàng xem nhiều
-    // public function laychitiethoadonxemnhieu()
+    // Lấy mặt hàng xem nhiều
+    // public function laygiohangxemnhieu()
     // {
     //     $dbcon = DATABASE::connect();
     //     try {
-    //         $sql = "SELECT * FROM chitiethoadon ORDER BY luotxem DESC LIMIT 3";
+    //         $sql = "SELECT * FROM giohang ORDER BY luotxem DESC LIMIT 3";
     //         $cmd = $dbcon->prepare($sql);
     //         $cmd->execute();
     //         $result = $cmd->fetchAll();
@@ -151,55 +152,19 @@ class CHITITETHOADON
     //     }
     // }
     // Thêm mới
-    public function themchitietdonhang($hoadon_id, $mypham_id, $dongia, $soluong, $thanhtien)
-    {
-        $db = DATABASE::connect();
-        try {
-            $sql = "INSERT INTO chitiethoadon (hoadon_id, mypham_id, dongia, soluong, thanhtien) 
-					VALUES(:hoadon_id, :mypham_id, :dongia, :soluong, :thanhtien)";
-            $cmd = $db->prepare($sql);
-            $cmd->bindValue(':hoadon_id', $hoadon_id);
-            $cmd->bindValue(':mypham_id', $mypham_id);
-            $cmd->bindValue(':dongia', $dongia);
-            $cmd->bindValue(':soluong', $soluong);
-            $cmd->bindValue(':thanhtien', $thanhtien);
-            $cmd->execute();
-            $id = $db->lastInsertId();
-            return $id;
-        } catch (PDOException $e) {
-            $error_message = $e->getMessage();
-            echo "<p>Lỗi truy vấn: $error_message</p>";
-            exit();
-        }
-    }
-//     public function themchitiethoadon($chitiethoadon)
-//     {
-//         $dbcon = DATABASE::connect();
-//         try {
-//             $sql = "INSERT INTO 
-// chitiethoadon(hoadon_id,mypham_id,soluong,thanhtien) 
-// VALUES(:hoadon_id,:mypham_id,:soluong,:thanhtien)";
-//             $cmd = $dbcon->prepare($sql);
-//             $cmd->bindValue(":hoadon_id", $chitiethoadon->hoadon_id);
-//             $cmd->bindValue(":mypham_id", $chitiethoadon->mypham_id);
-//             $cmd->bindValue(":soluong", $chitiethoadon->soluong);
-//             $cmd->bindValue(":thanhtien", $chitiethoadon->thanhtien);
-//             $result = $cmd->execute();
-//             return $result;
-//         } catch (PDOException $e) {
-//             $error_message = $e->getMessage();
-//             echo "<p>Lỗi truy vấn: $error_message</p>";
-//             exit();
-//         }
-//     }
-    // Xóa 
-    public function xoachitiethoadon($chitiethoadon)
+    public function themgiohang($giohang)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "DELETE FROM chitiethoadon WHERE id=:id";
+            $sql = "INSERT INTO 
+giohang(nguoidung_id,mypham_id,soluong,thanhtien) 
+VALUES(:nguoidung_id,:mypham_id,:soluong,:thanhtien)";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":id", $chitiethoadon->id);
+            $cmd->bindValue(":nguoidung_id", $giohang->nguoidung_id);
+            $cmd->bindValue(":mypham_id", $giohang->mypham_id);
+            $cmd->bindValue(":soluong", $giohang->soluong);
+            $cmd->bindValue(":thanhtien", $giohang->thanhtien);
+
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -208,22 +173,54 @@ class CHITITETHOADON
             exit();
         }
     }
-    // Cập nhật 
-    public function suachitiethoadon($chitiethoadon)
+    // Xóa 
+    public function xoagiohang($giohang)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE chitiethoadon SET hoadon_id=:hoadon_id,
+            $sql = "DELETE FROM giohang WHERE id=:id";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":id", $giohang->id);
+            $result = $cmd->execute();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    function demgiohang($nguoidung_id)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT COUNT(mypham_id) as count FROM giohang WHERE nguoidung_id=:id";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":id", $nguoidung_id);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    // Cập nhật 
+    public function suagiohang($giohang)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "UPDATE giohang SET nguoidung_id=:nguoidung_id,
             mypham_id=:mypham_id,
             soluong=:soluong,
-            thanhtien=:thanhtien,
+            thanhtien=:thanhtien
             WHERE id=:id";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":hoadon_id", $chitiethoadon->hoadon_id);
-            $cmd->bindValue(":mypham_id", $chitiethoadon->mypham_id);
-            $cmd->bindValue(":soluong", $chitiethoadon->soluong);
-            $cmd->bindValue(":thanhtien", $chitiethoadon->thanhtien);
-            $cmd->bindValue(":id", $chitiethoadon->id);
+            $cmd->bindValue(":nguoidung_id", $giohang->nguoidung_id);
+            $cmd->bindValue(":mypham_id", $giohang->mypham_id);
+            $cmd->bindValue(":soluong", $giohang->soluong);
+            $cmd->bindValue(":thanhtien", $giohang->thanhtien);
+            $cmd->bindValue(":id", $giohang->id);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {

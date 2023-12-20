@@ -330,4 +330,20 @@ VALUES(:tenmp,:loai_id,:thuonghieu,:hinhanh1,:hinhanh2,:hinhanh3,:giagoc,:giaban
             exit();
         }
     }
+    public function capnhatsoluong($id, $soluong)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "UPDATE mypham SET soluong=soluong - :soluong WHERE id=:id";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":soluong", $soluong);
+            $cmd->bindValue(":id", $id);
+            $result = $cmd->execute();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 }

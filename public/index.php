@@ -39,17 +39,22 @@ if (isset($_REQUEST["action"])) {
 $mp = new MYPHAM();
 $lmp = new LOAIMYPHAM();
 $nd = new NGUOIDUNG();
-$gh = new GIOHANG();
 $cthd = new CHITITETHOADON();
 $hd = new HOADON();
 
 switch ($action) {
     case "macdinh":
-        $id = $_SESSION["nguoidung"]["id"];
-        $sogio = $gh->demgiohang($id);
+        // $id = $_SESSION["nguoidung"]["id"];
+        // $sogio = $gh->demgiohang($id);
         $loai = $lmp->layloaimypham();
         $mypham = $mp->laymypham();
         include("main.php");
+        break;
+    case "gioithieu":
+        
+        // $loai = $lmp->layloaimypham();
+        // $mypham = $mp->laymypham();
+        include("about.php");
         break;
     case "search":
         if (isset($_POST["timkiem"])) {
@@ -70,9 +75,11 @@ switch ($action) {
         }
         break;
     case "xemtatca":
+
         $mypham = $mp->laymypham();
-        $id = $_SESSION["nguoidung"]["id"];
-        $sogio = $gh->demgiohang($id);
+        
+        // $id = $_SESSION["nguoidung"]["id"];
+        // $sogio = $gh->demgiohang($id);
         include("shop.php");
         break;
     case "chitiet":
@@ -92,8 +99,8 @@ switch ($action) {
         }
         break;
     case "hoso":
-        $id = $_SESSION["nguoidung"]["id"];
-        $sogio = $gh->demgiohang($id);
+        // $id = $_SESSION["nguoidung"]["id"];
+        // $sogio = $gh->demgiohang($id);
         include("profile.php");
         break;
     case "xlhoso":
@@ -113,8 +120,7 @@ switch ($action) {
 
         $nd->capnhatnguoidung($id, $email, $sdt, $tennd, $hinhanh, $diachi);
         $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email);
-        $id = $_SESSION["nguoidung"]["id"];
-        $sogio = $gh->demgiohang($id);
+        $giohang = laygiohang();
         include("profile.php");
         break;
     case "dangnhap":
@@ -132,8 +138,6 @@ switch ($action) {
                 if ($_SESSION["nguoidung"]["loaind_id"] == 2) {
                     $mypham = $mp->laymypham();
                     $loai = $lmp->layloaimypham();
-                    $id = $_SESSION["nguoidung"]["id"];
-                    $sogio = $gh->demgiohang($id);
                     include("main.php");
                 } elseif ($_SESSION["nguoidung"]["loaind_id"] == 1) {
                     $mypham = $mp->laymypham();
@@ -175,40 +179,116 @@ switch ($action) {
         // $loai = $lmp->layloaimypham();
         include("profile.php");
         break;
-    case "giohang":
-        $giohang = $gh->laygiohang();
+    case "xemgiohang":
+        $giohang = laygiohang();
+        $dh_dadat = $cthd->laychitiethoadon();
         $mypham = $mp->laymypham();
-        $id = $_SESSION["nguoidung"]["id"];
-        $sogio = $gh->demgiohang($id);
+        $donhang = $hd->layhoadon();
+        $nguoidung = $nd->laynguoidung();
         include("cart.php");
         break;
     case "chovaogio":
         if (isset($_REQUEST["id"]))
-            $idmp = $_REQUEST["id"];
-        if (isset($_REQUEST["innd"]))
-            $idnd = $_REQUEST["innd"];
+            $id = $_REQUEST["id"];
         if (isset($_REQUEST["soluong"]))
             $soluong = $_REQUEST["soluong"];
         else
             $soluong = "1";
-
-        $mypham = $mp->laymyphamtheoid($idmp);
-        $thanhtien = $soluong * $mypham["giaban"];
-        $giohang = new GIOHANG();
-        $giohang = $gh->setnguoidung_id($idnd);
-        $giohang = $gh->setmypham_id($idmp);
-        $giohang = $gh->setsoluong($soluong);
-        $giohang = $gh->setthanhtien($thanhtien);
-
-        $gh->themgiohang($giohang);
-
-        
-        $giohang = $gh->laygiohang();
-        $dh_dadat = $dhct->laydonhangct();
-        $sanpham = $sp->laysanpham();
-        $donhang = $dh->laydonhang();
+        if (isset($_SESSION["giohang"][$id])) {
+            $soluong += $_SESSION["giohang"][$id];
+            $_SESSION["giohang"][$id] = $soluong;
+        } else {
+            themhangvaogio($id, $soluong);
+        }
+        $giohang = laygiohang();
+        $dh_dadat = $cthd->laychitiethoadon();
+        $mypham = $mp->laymypham();
+        $donhang = $hd->layhoadon();
         $nguoidung = $nd->laynguoidung();
         include("cart.php");
+        break;
+    case "giohang":
+        $giohang = laygiohang();
+        $dh_dadat = $cthd->laychitiethoadon();
+        $sanpham = $sp->laysanpham();
+        $donhang = $hd->layhoadon();
+        $nguoidung = $nd->laynguoidung();
+        include("cart.php");
+        break;
+    case "capnhatgio":
+        if (isset($_REQUEST["mh"])) {
+            $mh = $_REQUEST["mh"];
+            foreach ($mh as $id => $soluong) {
+                if ($soluong > 0)
+                    capnhatsoluong($id, $soluong);
+                else
+                    xoamotmathang($id);
+            }
+        }
+        $giohang = laygiohang();
+        $dh_dadat = $cthd->laychitiethoadon();
+        $mypham = $mp->laymypham();
+        $donhang = $hd->layhoadon();
+        $nguoidung = $nd->laynguoidung();
+        include("cart.php");
+        break;
+    case "xoagiohang":
+        xoagiohang();
+        $giohang = laygiohang();
+        $dh_dadat = $cthd->laychitiethoadon();
+        $mypham = $mp->laymypham();
+        $donhang = $hd->layhoadon();
+        $nguoidung = $nd->laynguoidung();
+        include("cart.php");
+        break;
+    case "thanhtoan":
+        // Kiểm tra hành động $action: yêu cầu đăng nhập nếu chưa xác thực
+        if ($isLogin == FALSE) {
+            include("dangnhap.php");
+        } else {
+            $giohang = laygiohang();
+            include("checkout.php");
+        }
+        break;
+    case "luudonhang":
+        //THÊM NGƯỜI DÙNG NẾU CHƯA CÓ TÀI KHOẢN
+        // if (!isset($_SESSION["khachhang"])) {
+        //     $email = $_POST["txtemail"];
+        //     $hoten = $_POST["txthoten"];
+        //     $sodienthoai = $_POST["txtsodienthoai"];
+        //     $diachi = $_POST["txtdiachi"];
+
+        //     // lưu thông tin khách nếu chưa có trong db (kiểm tra email có tồn tại chưa)
+        //     // xử lý thêm...
+        //     $kh = new NGUOIDUNG();
+        //     $khachhang_id = $kh->themnguoidung($email, $sodienthoai, $hoten);
+        // } else {
+
+        //}
+        $nguoidung_id = $_SESSION["nguoidung"]["id"];
+        // lưu đơn hàng
+        $dh = new HOADON();
+        $tongtien = tinhtiengiohang();
+        $donhang_id = $dh->themhoadon($nguoidung_id, $tongtien);
+
+        // lưu chi tiết đơn hàng
+        $ct = new CHITITETHOADON();
+        $giohang = laygiohang();
+        foreach ($giohang as $id => $mh) {
+            $dongia = $mh["giaban"];
+            $soluong = $mh["soluong"];
+            $thanhtien = $mh["thanhtien"];
+            $ct->themchitietdonhang($donhang_id, $id, $dongia, $soluong, $thanhtien);
+            $mh = new MYPHAM();
+            $mh->capnhatsoluong($id, $soluong);
+        }
+
+        // xóa giỏ hàng
+        xoagiohang();
+
+        $loai = $lmp->layloaimypham();
+        $mypham = $mp->laymypham();
+        include("main.php");
         break;
     case "quenmatkhau":
 

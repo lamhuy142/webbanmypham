@@ -1,232 +1,99 @@
 <?php
-class GIOHANG
+// Tạo mảng SESSION giohang rỗng nếu nó không tồn tại
+if (!isset($_SESSION['giohang'])) {
+    $_SESSION['giohang'] = array();
+}
+
+// Hàm thêm sản phẩm vào giỏ
+function themhangvaogio($id, $soluong)
 {
-    // khai báo các thuộc tính
-    private $id;
-    private $nguoidung_id;
-    private $mypham_id;
-    private $soluong;
-    private $thanhtien;
+    //    //Tạo thể hiện của lớp MATHANG
+    //    $mh_db = new MATHANG();
+    //Cập nhập Số lượng vào SESSION - Làm tròn
+    $_SESSION['giohang'][$id] = round($soluong, 0);
+    //    //Lấy thông tin của sản phẩm dựa vào $id
+    //    $mh = $mh_db->laymathangtheoid($id);
+    //    //Cập nhật thông tin của Mã danh mục và Tên danh mục vào mảng SESSION
+    //    $_SESSION['madm_cuoi'] = $mh['danhmuc_id'];
+    //    $_SESSION['tendm_cuoi'] = $mh['tendanhmuc'];
+}
 
 
-    public function getid()
-    {
-        return $this->id;
+// Cập nhật số lượng của giỏ hàng
+function capnhatsoluong($id, $soluong)
+{
+    if (isset($_SESSION['giohang'][$id])) {
+        $_SESSION['giohang'][$id] = round($soluong, 0);
     }
-    public function setid($value)
-    {
-        $this->id = $value;
-    }
-    public function getnguoidung_id()
-    {
-        return $this->nguoidung_id;
-    }
-    public function setnguoidung_id($value)
-    {
-        $this->nguoidung_id = $value;
-    }
-    public function getmypham_id()
-    {
-        return $this->mypham_id;
-    }
-    public function setmypham_id($value)
-    {
-        $this->mypham_id = $value;
-    }
-    public function getsoluong()
-    {
-        return $this->soluong;
-    }
-    public function setsoluong($value)
-    {
-        $this->soluong = $value;
-    }
-    public function getthanhtien()
-    {
-        return $this->thanhtien;
-    }
-    public function setthanhtien($value)
-    {
-        $this->thanhtien = $value;
-    }
+}
 
-    // Lấy danh sách
-    public function laygiohang()
-    {
-        $dbcon = DATABASE::connect();
-        try {
-            $sql = "SELECT * FROM giohang ORDER BY id DESC ";
-            $cmd = $dbcon->prepare($sql);
-            $cmd->execute();
-            $result = $cmd->fetchAll();
-            return $result;
-        } catch (PDOException $e) {
-            $error_message = $e->getMessage();
-            echo "<p>Lỗi truy vấn: $error_message</p>";
-            exit();
-        }
+// Xóa một sản phẩm trong giỏ hàng
+function xoamotmathang($id)
+{
+    if (isset($_SESSION['giohang'][$id])) {
+        unset($_SESSION['giohang'][$id]);
     }
-    // Tìm kiếm 
-    public function timkiemgiohang($search)
-    {
-        $dbcon = DATABASE::connect();
-        try {
-            $sql = "SELECT * FROM giohang  where mypham_id like '%$search%'  "; //OR p.tenpl like '%$search%'
-            $cmd = $dbcon->prepare($sql);
-            // $cmd->bindValue(":nguoidung_id", $search);
-            $cmd->execute();
-            $result = $cmd->fetchAll();
-            return $result;
-        } catch (PDOException $e) {
-            $error_message = $e->getMessage();
-            echo "<p>Lỗi truy vấn: $error_message</p>";
-            exit();
-        }
-    }
+}
 
-    // // Lấy danh sách mặt hàng thuộc 1 danh mục
-    // public function laygiohangtheoloai($loaisp)
-    // {
-    //     $dbcon = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM giohang WHERE mypham_id=:madm";
-    //         $cmd = $dbcon->prepare($sql);
-    //         $cmd->bindValue(":madm", $loaisp);
-    //         $cmd->execute();
-    //         $result = $cmd->fetchAll();
-    //         return $result;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+// Hàm lấy mảng các sản phẩm trong giohang
+function laygiohang()
+{
 
-    // Lấy giohang theo id
-    public function laygiohangtheoid($id)
-    {
-        $dbcon = DATABASE::connect();
-        try {
-            $sql = "SELECT * FROM giohang WHERE id=:id";
-            $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":id", $id);
-            $cmd->execute();
-            $result = $cmd->fetch();
-            return $result;
-        } catch (PDOException $e) {
-            $error_message = $e->getMessage();
-            echo "<p>Lỗi truy vấn: $error_message</p>";
-            exit();
-        }
-    }
-    // // Cập nhật lượt xem
-    // public function tangluotxem($id)
-    // {
-    //     $dbcon = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE giohang SET luotxem=luotxem+1 WHERE id=:id";
-    //         $cmd = $dbcon->prepare($sql);
-    //         $cmd->bindValue(":id", $id);
-    //         $result = $cmd->execute();
-    //         return $result;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
-    // Lấy mặt hàng xem nhiều
-    // public function laygiohangxemnhieu()
-    // {
-    //     $dbcon = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM giohang ORDER BY luotxem DESC LIMIT 3";
-    //         $cmd = $dbcon->prepare($sql);
-    //         $cmd->execute();
-    //         $result = $cmd->fetchAll();
-    //         return $result;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
-    // Thêm mới
-    public function themgiohang($giohang)
-    {
-        $dbcon = DATABASE::connect();
-        try {
-            $sql = "INSERT INTO 
-giohang(nguoidung_id,mypham_id,soluong,thanhtien) 
-VALUES(:nguoidung_id,:mypham_id,:soluong,:thanhtien)";
-            $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":nguoidung_id", $giohang->nguoidung_id);
-            $cmd->bindValue(":mypham_id", $giohang->mypham_id);
-            $cmd->bindValue(":soluong", $giohang->soluong);
-            $cmd->bindValue(":thanhtien", $giohang->thanhtien);
+    //Tạo mảng rỗng để lưu danh sách sản phẩm trong giỏ
+    $mh = array();
+    $mh_db = new MYPHAM();
 
-            $result = $cmd->execute();
-            return $result;
-        } catch (PDOException $e) {
-            $error_message = $e->getMessage();
-            echo "<p>Lỗi truy vấn: $error_message</p>";
-            exit();
-        }
+    //Duyệt mảng SESSION giohang và lấy từng id sản phẩm cùng số lượng
+    foreach ($_SESSION['giohang'] as $id => $soluong) {
+        // Gọi hàm lấy thông tin của sản phẩm theo mã sản phẩm
+        $m = $mh_db->laymyphamtheoid($id);
+        $dongia = $m['giaban'];
+        $solg = intval($soluong);
+        // Tính tiền
+        $thtien = round($dongia * $soluong, 2);
+
+        // Lưu thông tin trong mảng items để hiển thị lên giỏ hàng
+        
+        $mh[$id]['tenmp'] = $m['tenmp'];
+        $mh[$id]['hinhanh'] = $m['hinhanh'];
+        $mh[$id]['giaban'] = $dongia;
+        $mh[$id]['soluong'] = $solg;
+        $mh[$id]['thanhtien'] = $thtien;
     }
-    // Xóa 
-    public function xoagiohang($giohang)
-    {
-        $dbcon = DATABASE::connect();
-        try {
-            $sql = "DELETE FROM giohang WHERE id=:id";
-            $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":id", $giohang->id);
-            $result = $cmd->execute();
-            return $result;
-        } catch (PDOException $e) {
-            $error_message = $e->getMessage();
-            echo "<p>Lỗi truy vấn: $error_message</p>";
-            exit();
-        }
+    return $mh;
+}
+
+// Đếm số sản phẩm trong giỏ hàng
+function demhangtronggio()
+{
+    return count($_SESSION['giohang']);
+}
+
+// Đếm tổng số lượng các sản phẩm trong giỏ
+function demsoluongtronggio()
+{
+    $tongsl = 0;
+    //Lấy mảng các sản phẩm từ trong SESSION
+    $giohang = laygiohang();
+    foreach ($giohang as $item) {
+        $tongsl += $item['soluong'];
     }
-    function demgiohang($nguoidung_id)
-    {
-        $dbcon = DATABASE::connect();
-        try {
-            $sql = "SELECT COUNT(mypham_id) as count FROM giohang WHERE nguoidung_id=:id";
-            $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":id", $nguoidung_id);
-            $cmd->execute();
-            $result = $cmd->fetch();
-            return $result;
-        } catch (PDOException $e) {
-            $error_message = $e->getMessage();
-            echo "<p>Lỗi truy vấn: $error_message</p>";
-            exit();
-        }
+    return $tongsl;
+}
+
+// Tính tổng thành tiền trong giỏ hàng
+function tinhtiengiohang()
+{
+    $tong = 0;
+    $giohang = laygiohang();
+    foreach ($giohang as $mh) {
+        $tong += $mh['giaban'] * $mh['soluong'];
     }
-    // Cập nhật 
-    public function suagiohang($giohang)
-    {
-        $dbcon = DATABASE::connect();
-        try {
-            $sql = "UPDATE giohang SET nguoidung_id=:nguoidung_id,
-            mypham_id=:mypham_id,
-            soluong=:soluong,
-            thanhtien=:thanhtien
-            WHERE id=:id";
-            $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":nguoidung_id", $giohang->nguoidung_id);
-            $cmd->bindValue(":mypham_id", $giohang->mypham_id);
-            $cmd->bindValue(":soluong", $giohang->soluong);
-            $cmd->bindValue(":thanhtien", $giohang->thanhtien);
-            $cmd->bindValue(":id", $giohang->id);
-            $result = $cmd->execute();
-            return $result;
-        } catch (PDOException $e) {
-            $error_message = $e->getMessage();
-            echo "<p>Lỗi truy vấn: $error_message</p>";
-            exit();
-        }
-    }
+    return $tong;
+}
+
+// Xóa tất cả giỏ hàng
+function xoagiohang()
+{
+    $_SESSION['giohang'] = array();
 }

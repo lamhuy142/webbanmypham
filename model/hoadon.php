@@ -169,29 +169,46 @@ class HOADON
     //     }
     // }
     // Thêm mới
-    public function themhoadon($hoadon)
+    public function themhoadon($nguoidung_id, $tongtien)
     {
-        $dbcon = DATABASE::connect();
+        $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO 
-hoadon(nguoidung_id,ngayhd,ngaygiaohang,dathanhtoan,tinhtrang,tongtien) 
-VALUES(:nguoidung_id,:ngayhd,:ngaygiaohang,:dathanhtoan,:tinhtrang,:tongtien)";
-            $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":nguoidung_id", $hoadon->nguoidung_id);
-            $cmd->bindValue(":ngayhd", $hoadon->ngayhd);
-            $cmd->bindValue(":ngaygiaohang", $hoadon->ngaygiaohang);
-            $cmd->bindValue(":dathanhtoan", $hoadon->dathanhtoan);
-            $cmd->bindValue(":tinhtrang", $hoadon->tinhtrang);
-            $cmd->bindValue(":tongtien", $hoadon->tongtien);
-            
-            $result = $cmd->execute();
-            return $result;
+            $sql = "INSERT INTO hoadon (nguoidung_id, tongtien) VALUES(:nguoidung_id,:tongtien)";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':nguoidung_id', $nguoidung_id);
+            $cmd->bindValue(':tongtien', $tongtien);
+            $cmd->execute();
+            $id = $db->lastInsertId();
+            return $id;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
             exit();
         }
     }
+//     public function themhoadon($hoadon)
+//     {
+//         $dbcon = DATABASE::connect();
+//         try {
+//             $sql = "INSERT INTO 
+// hoadon(nguoidung_id,ngayhd,ngaygiaohang,dathanhtoan,tinhtrang,tongtien) 
+// VALUES(:nguoidung_id,:ngayhd,:ngaygiaohang,:dathanhtoan,:tinhtrang,:tongtien)";
+//             $cmd = $dbcon->prepare($sql);
+//             $cmd->bindValue(":nguoidung_id", $hoadon->nguoidung_id);
+//             $cmd->bindValue(":ngayhd", $hoadon->ngayhd);
+//             $cmd->bindValue(":ngaygiaohang", $hoadon->ngaygiaohang);
+//             $cmd->bindValue(":dathanhtoan", $hoadon->dathanhtoan);
+//             $cmd->bindValue(":tinhtrang", $hoadon->tinhtrang);
+//             $cmd->bindValue(":tongtien", $hoadon->tongtien);
+            
+//             $result = $cmd->execute();
+//             return $result;
+//         } catch (PDOException $e) {
+//             $error_message = $e->getMessage();
+//             echo "<p>Lỗi truy vấn: $error_message</p>";
+//             exit();
+//         }
+//     }
     // Xóa 
     public function xoahoadon($hoadon)
     {

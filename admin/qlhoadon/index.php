@@ -23,6 +23,15 @@ switch ($action) {
         $hoadon = $hd->layhoadon();
         include("main.php");
         break;
+    case "xoa":
+        $xoa = new HOADON();
+        $xoa->setid($_GET["id"]);
+        $hoadon = $hd->xoahoadon($xoa);
+        
+        $nguoidung = $nd->laynguoidung();
+        $hoadon = $hd->layhoadon();
+        include("main.php");
+        break;
     case "khoa":
         if (isset($_REQUEST["id"]))
             $id = $_REQUEST["id"];

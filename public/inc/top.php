@@ -62,9 +62,9 @@
                             </a>
                         </li>
                         <li class="nav-item
-                        <?php if (strpos($_SERVER["REQUEST_URI"], "about") != false) echo "active"; ?>
+                        <?php if (strpos($_SERVER["REQUEST_URI"], "gioithieu") != false) echo "active"; ?>
                         ">
-                            <a class="nav-link" href="about.php">
+                            <a class="nav-link" href="index.php?action=gioithieu">
                                 Giới Thiệu
                             </a>
                         </li>
@@ -81,7 +81,7 @@
                         </div>
                     </form>
                     <div class="user_option">
-                        <?php if (isset($_SESSION["nguoidung"])) { ?>
+                        <?php if (isset($_SESSION["nguoidung"]) && !empty($_SESSION["nguoidung"]["tennd"])) { ?>
                             <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                                 <ul class="navbar-nav">
                                     <li class="nav-item dropdown">
@@ -96,8 +96,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <a href="index.php?action=giohang">
-                                <i class="bi bi-bag-fill "></i><span class="badge bg-danger text-white ms-1 rounded-pill"><?php echo is_array($sogio); ?></span>
+                            <a href="index.php?action=xemgiohang">
+                                <i class="bi bi-bag-fill "></i><span class="badge bg-danger text-white ms-1 rounded-pill"><?php echo demsoluongtronggio(); ?></span> <!--<php echo is_array($sogio); >-->
                             </a>
                         <?php } else { ?>
                             <a href="#">

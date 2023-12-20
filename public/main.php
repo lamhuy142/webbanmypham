@@ -65,16 +65,14 @@
 
               <!-- Footer Card -->
               <!-- Product actions-->
-              <form method="post">
-                <input type="hidden" name="idmp" value="<?php echo $m['id']; ?>" id="">
-                <input type="hidden" name="idnd" value="<?php echo $_SESSION['nguoidung']['id']; ?>" id="">
-                <input type="hidden" name="action" value="chovaogio" id="">
-                <div class="card-footer p-2 pt-0 border-top-0 bg-transparent">
-                  <div class="text-center">
-                    <input type="submit" class="btn btn-outline-info mt-auto" value="Chọn mua"></input>
-                  </div>
-                </div>
-              </form>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <form method="post">
+                  <input type="hidden" name="action" value="chovaogio">
+                  <input type="hidden" name="id" value="<?php echo $m["id"]; ?>">
+                  <input class="form-control  btn btn-outline-info mt-auto" type="submit" name="btnchonmua" value="Chọn mua">
+                </form>
+              </div>
 
               <!-- End Footer Card -->
 
