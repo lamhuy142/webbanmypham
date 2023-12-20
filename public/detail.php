@@ -58,13 +58,21 @@
                         <input class="form-control text-center " id="inputQuantity" name="txtsoluong" type="number" value="1" style="max-width: 3rem" />
                     </div>
                     <div class="mb-3">
-                        <button class="btn btn-outline-dark flex-shrink-0 mt-3" type="button">
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <form method="post">
+                                <input type="hidden" name="action" value="chovaogio">
+                                <input type="hidden" name="id" value="<?php echo $m["id"]; ?>">
+                                <input class="btn btn-outline-dark flex-shrink-0 mt-3" type="submit" name="btnchonmua" value="Thêm vào giỏ hàng">
+                            </form>
+                            <button class="btn btn-danger flex-shrink-0 mt-3 " type="button">
+                                Mua ngay
+                            </button>
+                        </div>
+                        <!-- <button class="btn btn-outline-dark flex-shrink-0 mt-3" type="button">
                             <i class="bi-cart-fill"></i>
                             Thêm vào giỏ hàng
-                        </button>
-                        <button class="btn btn-danger flex-shrink-0 mt-3 " type="button">
-                            Mua ngay
-                        </button>
+                        </button> -->
+
 
                     </div>
                 </form>

@@ -93,8 +93,6 @@ switch ($action) {
             $loai_id = $mpct["loai_id"];
             // $mypham = $mp->laymyphamtheoloai($loai_id);
             $mypham = $mp->laymypham();
-            $id = $_SESSION["nguoidung"]["id"];
-            $sogio = $gh->demgiohang($id);
             include("detail.php");
         }
         break;

@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                    <input type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary" value="Hoàn Tất Đơn Hàng"></input>
+                    <input type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-success" value="Hoàn Tất Đơn Hàng"></input>
                 </div>
             </div>
             </div>

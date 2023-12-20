@@ -18,7 +18,7 @@
               <div class="card">
                 <!-- Top Card -->
                 <a href="index.php?action=chitiet&id=<?php echo $m["id"]; ?>">
-                  <img width="80px" height="300px" class=" card-img-top" src="../img/products/<?php echo $m["hinhanh"]; ?>" alt="">
+                  <img width="80px" height="300px" class=" card-img-top" src="../img/products/<?php echo $m['hinhanh']; ?>" alt="">
 
                   <!-- End Top Card -->
 
@@ -36,7 +36,7 @@
                     <!-- Name -->
                     <div class="detail-box">
                       <h6 class="text-decoration-none text-muted">
-                        <?php echo mb_substr($m["tenmp"], 0, 45) . "..."; ?>
+                        <?php echo mb_substr($m["tenmp"], 0, 35) . "..."; ?>
                       </h6>
                     </div>
                 </a>

@@ -1,12 +1,13 @@
 <?php include("./inc/top.php") ?>
-<?php
-if (demhangtronggio() == 0) { ?>
-    <h3 class="text-info">Giỏ hàng rỗng!</h3>
-    <p>Vui lòng chọn sản phẩm...</p>
-<?php } else { ?>
-    <!-- Cart Page Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
+
+<!-- Cart Page Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <?php
+        if (demhangtronggio() == 0) { ?>
+            <h3 class="text-secondary">Giỏ hàng rỗng!</h3>
+            <p>Vui lòng chọn sản phẩm...</p>
+        <?php } else { ?>
             <div class="table-responsive">
                 <form action="index.php">
                     <table class="table">
@@ -70,54 +71,54 @@ if (demhangtronggio() == 0) { ?>
                     </table>
                     <div class="row">
                         <div class="col">
-                            <a href="index.php?action=xoagiohang">Xóa giỏ hàng</a>
+                            <a class="text-decoration-none text-danger" href="index.php?action=xoagiohang">Xóa giỏ hàng</a>
                             (Xóa một mặt hàng nhập số lượng = 0)
                         </div>
                         <div class="col text-end">
                             <input type="hidden" name="action" value="capnhatgio">
-                            <input type="submit" class="btn btn-warning" value="Cập nhật">
+                            <input type="submit" class="btn btn-secondary text-warning" value="Cập nhật">
 
                         </div>
                     </div>
 
                 </form>
-
+            <?php } ?>
 
             </div>
-        <?php } ?>
-        <div class="mt-5">
-            <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Nhập mã giảm giá">
-            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Áp dụng </button>
-        </div>
-        <div class="row g-4 justify-content-end">
-            <div class="col-8"></div>
-            <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
-                <div class="bg-light rounded">
-                    <div class="p-4">
-                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
-                        <div class="d-flex justify-content-between mb-4">
-                            <h5 class="mb-0 me-4">Subtotal:</h5>
-                            <p class="mb-0"><?php echo number_format(tinhtiengiohang()); ?></p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h5 class="mb-0 me-4">Shipping</h5>
-                            <div class="">
-                                <p class="mb-0">Flat rate: $3.00</p>
+
+            <!-- <div class="mt-5">
+                <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Nhập mã giảm giá">
+                <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Áp dụng </button>
+            </div> -->
+            <div class="row g-4 justify-content-end">
+                <div class="col-8"></div>
+                <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
+                    <div class="bg-light rounded">
+                        <div class="p-4">
+                            <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                            <div class="d-flex justify-content-between mb-4">
+                                <h5 class="mb-0 me-4">Subtotal:</h5>
+                                <p class="mb-0"><?php echo number_format(tinhtiengiohang()); ?></p>
                             </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="mb-0 me-4">Shipping</h5>
+                                <div class="">
+                                    <p class="mb-0">Flat rate: $3.00</p>
+                                </div>
+                            </div>
+                            <p class="mb-0 text-end">Shipping to Ukraine.</p>
                         </div>
-                        <p class="mb-0 text-end">Shipping to Ukraine.</p>
+                        <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                            <h5 class="mb-0 ps-4 me-4">Total</h5>
+                            <p class="mb-0 pe-4"><?php echo number_format(tinhtiengiohang()); ?></p>
+                        </div>
+                        <a href="index.php?action=thanhtoan" class="btn border-secondary rounded-pill px-4 py-3 text-success text-uppercase mb-4 ms-4">Thanh toán</a>
+                        <!-- <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button> -->
                     </div>
-                    <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                        <h5 class="mb-0 ps-4 me-4">Total</h5>
-                        <p class="mb-0 pe-4"><?php echo number_format(tinhtiengiohang()); ?></p>
-                    </div>
-                    <a href="index.php?action=thanhtoan" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4">Thanh toán</a>
-                    <!-- <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button> -->
                 </div>
             </div>
-        </div>
-        </div>
     </div>
-    <!-- Cart Page End -->
+</div>
+<!-- Cart Page End -->
 
-    <?php include("./inc/bottom.php") ?>
+<?php include("./inc/bottom.php") ?>
