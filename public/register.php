@@ -32,37 +32,36 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Tạo Tài Khoản!</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" method="post" action="index.php">
+                                <input type="hidden" name="action" value="xulydangky" id="">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                                        <input type="text" class="form-control form-control-user" name="txttennd" id="exampleFirstName" placeholder="Tên đăng nhập">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+                                        <input type="text" class="form-control form-control-user" name="txtdiachi" id="exampleLastName" placeholder="Địa chỉ">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                                    <input type="email" class="form-control form-control-user" name="txtemail" id="exampleInputEmail" placeholder="Email">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                        <input type="password" class="form-control form-control-user" name="txtmatkhau" id="exampleInputPassword" placeholder="Mật khẩu">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                                        <input type="password" class="form-control form-control-user" name="xacnhan_mk" id="exampleRepeatPassword" placeholder="Xác nhận mật khẩu">
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
+                                <input type="submit" class="btn btn-primary btn-user btn-block" value="Đăng ký tài khoản"></input>
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                    <i class="fab fa-google fa-fw"></i> Đăng ký với Google
                                 </a>
                                 <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                    <i class="fab fa-facebook-f fa-fw"></i> Đăng ký với Facebook
                                 </a>
                             </form>
                             <hr>
@@ -70,7 +69,7 @@
                                 <a class="small" href="forgot-password.php">Quên mật khẩu?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.php">Đã có tài khoản? Đăng  nhập!</a>
+                                <a class="small" href="login.php">Đã có tài khoản? Đăng nhập!</a>
                             </div>
                         </div>
                     </div>

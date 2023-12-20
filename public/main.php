@@ -3,7 +3,7 @@
 
 <section class="shop_section layout_padding">
   <div class="container">
-    <?php foreach($loai as $l):
+    <?php foreach ($loai as $l) :
       $i = 0; ?>
       <div class="heading_container heading_center p-4">
         <h2 class="">
@@ -18,7 +18,7 @@
               <div class="card">
                 <!-- Top Card -->
                 <a href="index.php?action=chitiet&id=<?php echo $m["id"]; ?>">
-                  <img width="100%" class=" card-img-top" src="./images/products/<?php echo $m["hinhanh1"]; ?>" alt="">
+                  <img width="80px" height="300px" class=" card-img-top" src="../img/products/<?php echo $m["hinhanh"]; ?>" alt="">
 
                   <!-- End Top Card -->
 
@@ -44,8 +44,9 @@
                   <h6>
                     <!-- Product price-->
                     <?php if ($m["giaban"] != $m["giagoc"]) { ?>
-                      <span class="text-muted text-decoration-line-through"><?php echo number_format($m["giagoc"]); ?>đ</span><?php } // end if 
-                                                                                                                              ?>
+                      <span class="text-muted text-decoration-line-through"><?php echo number_format($m["giagoc"]); ?>đ</span>
+                    <?php } // end if 
+                    ?>
                     <span class="text-danger fw-bolder"><?php echo number_format($m["giaban"]); ?>đ</span>
                   </h6>
                 </div>
@@ -64,10 +65,17 @@
 
               <!-- Footer Card -->
               <!-- Product actions-->
-              <div class="card-footer p-2 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a class="btn btn-outline-info mt-auto" href="index.php?action=chovaogio&id=<?php echo $m["id"]; ?>&soluong=1">
-                    Chọn mua</a></div>
-              </div>
+              <form method="post">
+                <input type="hidden" name="idmp" value="<?php echo $m['id']; ?>" id="">
+                <input type="hidden" name="idnd" value="<?php echo $_SESSION['nguoidung']['id']; ?>" id="">
+                <input type="hidden" name="action" value="chovaogio" id="">
+                <div class="card-footer p-2 pt-0 border-top-0 bg-transparent">
+                  <div class="text-center">
+                    <input type="submit" class="btn btn-outline-info mt-auto" value="Chọn mua"></input>
+                  </div>
+                </div>
+              </form>
+
               <!-- End Footer Card -->
 
             </div>
@@ -86,86 +94,6 @@
 
 <!-- end shop section -->
 
-<!-- saving section -->
-
-<section class="saving_section ">
-  <div class="box">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="img-box">
-            <img src="images/products/saving-img.png" alt="">
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="detail-box">
-            <div class="heading_container">
-              <h2>
-                Best Savings on <br>
-                new arrivals
-              </h2>
-            </div>
-            <p>
-              Qui ex dolore at repellat, quia neque doloribus omnis adipisci, ipsum eos odio fugit ut eveniet blanditiis praesentium totam non nostrum dignissimos nihil eius facere et eaque. Qui, animi obcaecati.
-            </p>
-            <div class="btn-box">
-              <a href="#" class="btn1">
-                Buy Now
-              </a>
-              <a href="#" class="btn2">
-                See More
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- end saving section -->
-
-<!-- gift section -->
-
-<section class="gift_section layout_padding-bottom">
-  <div class="box ">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-5">
-          <div class="img_container">
-            <div class="img-box">
-              <img src="images/products/gifts.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="col-md-7">
-          <div class="detail-box">
-            <div class="heading_container">
-              <h2>
-                Gifts for your <br>
-                loved ones
-              </h2>
-            </div>
-            <p>
-              Omnis ex nam laudantium odit illum harum, excepturi accusamus at corrupti, velit blanditiis unde perspiciatis, vitae minus culpa? Beatae at aut consequuntur porro adipisci aliquam eaque iste ducimus expedita accusantium?
-            </p>
-            <div class="btn-box">
-              <a href="#" class="btn1">
-                Buy Now
-              </a>
-              <a href="#" class="btn2">
-                See More
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- end gift section -->
 
 
 <!-- contact section -->
@@ -213,7 +141,6 @@
 </section>
 
 <!-- end contact section -->
-
 
 <!-- info section -->
 <?php include("./inc/bottom.php") ?>

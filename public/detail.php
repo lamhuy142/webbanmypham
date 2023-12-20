@@ -3,7 +3,33 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="./images/products/<?php echo $mpct['hinhanh1']; ?>" alt="<?php echo $mpct['hinhanh']; ?>" /></div>
+            <div class="col-md-6">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+
+                        <div class="carousel-item active">
+                            <img style="height:600px;width:500px;" class="card-img-top mb-5 mb-md-0 d-block w-100" src="../img/products/<?php echo $mpct['hinhanh']; ?>" alt="<?php echo $mpct['hinhanh']; ?>" />
+                        </div>
+                        <div class="carousel-item">
+                            <img style="height:600px;width:500px;" class="card-img-top mb-5 mb-md-0 d-block w-100" src="../img/products/<?php echo $mpct['hinhanh1']; ?>" alt="<?php echo $mpct['hinhanh']; ?>" />
+                        </div>
+                        <div class="carousel-item">
+                            <img style="height:600px;width:500px;" class="card-img-top mb-5 mb-md-0 d-block w-100" src="../img/products/<?php echo $mpct['hinhanh2']; ?>" alt="<?php echo $mpct['hinhanh']; ?>" />
+                        </div>
+                        <div class="carousel-item">
+                            <img style="height:600px;width:500px;" class="card-img-top mb-5 mb-md-0 d-block w-100" src="../img/products/<?php echo $mpct['hinhanh3']; ?>" alt="<?php echo $mpct['hinhanh']; ?>" />
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
             <div class="col-md-6  ">
                 <h3 class="fw-bolder "><?php echo $mpct['tenmp']; ?></h3>
                 <div class="fs-5 mb-5">
@@ -11,10 +37,20 @@
                         <span class="text-decoration-line-through text-secondary h6"><?php echo number_format($mpct['giagoc']); ?></span>
                     <?php } ?>
                     <span class="h6"><?php echo number_format($mpct['giaban']); ?>đ</span>
+                    <div class="detail-box">
+                        <div class="d-flex justify-content small text-warning mb-2">
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                            <div class="bi-star-fill"></div>
+                        </div>
+                    </div>
                 </div>
                 <form method="post" class="form-inline">
                     <input type="hidden" name="action" value="chovaogio">
                     <input type="hidden" name="id" value="<?php echo $mpct["id"]; ?>">
+
                     <div class="row ps-0">
                         <label class="text-secondary " for="txtsoluong">Số lượng</label>
                     </div>
@@ -46,7 +82,7 @@
                     <div class="col mb-5">
                         <div class=" card h-25">
                             <!-- Product image-->
-                            <img width="50px" class="card-img-top" src="./images/products/<?php echo $m['hinhanh1']; ?>" alt="<?php echo $m['hinhanh1']; ?>" />
+                            <img width="50px" class="card-img-top" src="../img/products/<?php echo $m['hinhanh1']; ?>" alt="<?php echo $m['hinhanh1']; ?>" />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">

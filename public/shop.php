@@ -1,5 +1,6 @@
 <?php include("./inc/top.php") ?>
 
+
 <!-- shop section -->
 
 <section class="shop_section layout_padding">
@@ -15,7 +16,7 @@
           <div class="card">
             <!-- Top Card -->
             <a href="index.php?action=chitiet&id=<?php echo $m['id']; ?>">
-              <img width="100%" class=" card-img-top" src="./images/products/<?php echo $m["hinhanh"]; ?>" alt="">
+              <img width="80px" height="300px" class=" card-img-top" src="../img/products/<?php echo $m["hinhanh"]; ?>" alt="">
               <!-- End Top Card -->
 
               <!-- Body Card -->
@@ -39,8 +40,9 @@
                   <h6>
                     <!-- Product price-->
                     <?php if ($m["giaban"] != $m["giagoc"]) { ?>
-                      <span class="text-muted text-decoration-line-through"><?php echo number_format($m["giagoc"]); ?>đ</span><?php } // end if 
-                                                                                                                              ?>
+                      <span class="text-muted text-decoration-line-through"><?php echo number_format($m["giagoc"]); ?>đ</span>
+                    <?php } // end if 
+                    ?>
                     <span class="text-danger fw-bolder"><?php echo number_format($m["giaban"]); ?>đ</span>
                   </h6>
                 </div>
@@ -69,12 +71,8 @@
         </div>
       <?php endforeach; ?>
     </div>
-    <div class="btn-box">
-      <a href="">
-        Xem Tất Cả
-      </a>
-    </div>
   </div>
+
 </section>
 
 <!-- end shop section -->

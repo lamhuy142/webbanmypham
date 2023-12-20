@@ -20,7 +20,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" /> -->
 
     <!-- slider stylesheet -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -40,9 +41,7 @@
         <header class="header_section">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
                 <a class="navbar-brand" href="index.php">
-                    <span>
-                        LH SHOP
-                    </span>
+                    <span>LH SHOP</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class=""></span>
@@ -75,28 +74,42 @@
                             <a class="nav-link" href="contact.php">Liên Hệ</a>
                         </li>
                     </ul>
+                    <form class="d-flex" method="post" action="index.php?action=search">
+                        <div class="input-group ps-2">
+                            <input type="text" class="form-control " placeholder="Search" name="txtsearch">
+                            <button type="submit" class=" btn btn-light" name="timkiem"><i class="bi bi-search-heart-fill"></i></button>
+                        </div>
+                    </form>
                     <div class="user_option">
-                        <a href="index.php?action=dangnhap">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>
-                                Đăng Nhập
-                            </span>
-
-                        </a>
-                        <a href="">
-                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                        </a>
-                        <form class="form-inline ">
-                            <div class="input-group rounded">
-                                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                                <span class="input-group-text border-0" id="search-addon">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </span>
+                        <?php if (isset($_SESSION["nguoidung"])) { ?>
+                            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img class="img-profile rounded-circle" style="height:30px; width: 30px; " src="../img/user/<?php echo $_SESSION['nguoidung']['hinhanh']; ?>" alt="">
+                                            <?php echo $_SESSION["nguoidung"]["tennd"]; ?>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-secondary" aria-labelledby="navbarDarkDropdownMenuLink">
+                                            <li><a class="dropdown-item" href="index.php?action=hoso&id=<?php echo $_SESSION["nguoidung"]["id"] ?>">Profile</a></li>
+                                            <li><a class="dropdown-item" href="index.php?action=dangxuat">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
-                            <!-- <button class="btn nav_search-btn" type="submit">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button> -->
-                        </form>
+                            <a href="index.php?action=giohang">
+                                <i class="bi bi-bag-fill "></i><span class="badge bg-danger text-white ms-1 rounded-pill"><?php echo is_array($sogio); ?></span>
+                            </a>
+                        <?php } else { ?>
+                            <a href="#">
+                                <i class="bi bi-bag-fill "></i>
+                            </a>
+                            <a href="index.php?action=dangnhap">
+                                Đăng nhập <i class="bi bi-door-open-fill"></i>
+                            </a>
+                            <a href="index.php?action=dangky">
+                                Đăng ký
+                            </a>
+                        <?php } ?>
                     </div>
                 </div>
             </nav>

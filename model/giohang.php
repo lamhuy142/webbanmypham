@@ -189,6 +189,22 @@ VALUES(:nguoidung_id,:mypham_id,:soluong,:thanhtien)";
             exit();
         }
     }
+    function demgiohang($nguoidung_id)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT COUNT(mypham_id) as count FROM giohang WHERE nguoidung_id=:id";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":id", $nguoidung_id);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     // Cập nhật 
     public function suagiohang($giohang)
     {

@@ -190,6 +190,7 @@ class NGUOIDUNG
             exit();
         }
     }
+    
     // // Cập nhật lượt xem
     // public function tangluotxem($id)
     // {
@@ -264,31 +265,51 @@ VALUES(:matkhau,:loaind_id,:diachi,:email,:sdt,:hinhanh,:tinhtrang,:tennd)";
         }
     }
     // Cập nhật 
-    public function suanguoidung($nguoidung)
+    // public function capnhatnguoidung($nguoidung)
+    // {
+    //     $dbcon = DATABASE::connect();
+    //     try {
+    //         $sql = "UPDATE nguoidung SET matkhau=:matkhau,
+    //         loaind_id=:loaind_id,
+    //         diachi=:diachi,
+    //         email=:email,
+    //         sdt=:sdt,
+    //         hinhanh=:hinhanh,
+    //         tinhtrang=:tinhtrang,
+    //         tennd=:tennd,
+    //         WHERE id=:id";
+    //         $cmd = $dbcon->prepare($sql);
+    //         $cmd->bindValue(":matkhau", $nguoidung->matkhau);
+    //         $cmd->bindValue(":loaind_id", $nguoidung->loaind_id);
+    //         $cmd->bindValue(":diachi", $nguoidung->diachi);
+    //         $cmd->bindValue(":email", $nguoidung->email);
+    //         $cmd->bindValue(":sdt", $nguoidung->sdt);
+    //         $cmd->bindValue(":hinhanh", $nguoidung->hinhanh);
+    //         $cmd->bindValue(":tinhtrang", $nguoidung->tinhtrang);
+    //         $cmd->bindValue(":tennd", $nguoidung->tennd);
+    //         $cmd->bindValue(":id", $nguoidung->id);
+    //         $result = $cmd->execute();
+    //         return $result;
+    //     } catch (PDOException $e) {
+    //         $error_message = $e->getMessage();
+    //         echo "<p>Lỗi truy vấn: $error_message</p>";
+    //         exit();
+    //     }
+    // }
+    public function capnhatnguoidung($id, $email, $sodt, $tennd, $hinhanh, $diachi)
     {
-        $dbcon = DATABASE::connect();
+        $db = DATABASE::connect();
         try {
-            $sql = "UPDATE nguoidung SET matkhau=:matkhau,
-            loaind_id=:loaind_id,
-            diachi=:diachi,
-            email=:email,
-            sdt=:sdt,
-            hinhanh=:hinhanh,
-            tinhtrang=:tinhtrang,
-            tennd=:tennd,
-            WHERE id=:id";
-            $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":matkhau", $nguoidung->matkhau);
-            $cmd->bindValue(":loaind_id", $nguoidung->loaind_id);
-            $cmd->bindValue(":diachi", $nguoidung->diachi);
-            $cmd->bindValue(":email", $nguoidung->email);
-            $cmd->bindValue(":sdt", $nguoidung->sdt);
-            $cmd->bindValue(":hinhanh", $nguoidung->hinhanh);
-            $cmd->bindValue(":tinhtrang", $nguoidung->tinhtrang);
-            $cmd->bindValue(":tennd", $nguoidung->tennd);
-            $cmd->bindValue(":id", $nguoidung->id);
-            $result = $cmd->execute();
-            return $result;
+            $sql = "UPDATE nguoidung set tennd=:tennd, email=:email,sdt=:sodt, hinhanh=:hinhanh, diachi=:diachi where id=:id";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':id', $id);
+            $cmd->bindValue(':email', $email);
+            $cmd->bindValue(':sodt', $sodt);
+            $cmd->bindValue(':tennd', $tennd);
+            $cmd->bindValue(':hinhanh', $hinhanh);
+            $cmd->bindValue(':diachi', $diachi);
+            $ketqua = $cmd->execute();
+            return $ketqua;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

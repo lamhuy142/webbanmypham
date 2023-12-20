@@ -10,6 +10,10 @@
     <meta name="author" content="">
 
     <title>LH SHOP</title>
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
     <!-- bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -81,6 +85,14 @@
                 <a class="nav-link" href="../qlmypham/index.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Quản lý mỹ phẩm</span></a>
+            </li>
+            <!-- Nav Item - LOAIMYPHAM -->
+            <li class="nav-item
+            <?php if (strpos($_SERVER["REQUEST_URI"], "qlphanloai") != false) echo "active"; ?>
+            ">
+                <a class="nav-link" href="../qlphanloai/index.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Quản lý phân loại</span></a>
             </li>
             <!-- Nav Item - ĐƠN HÀNG -->
             <li class="nav-item
@@ -252,25 +264,18 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Người dùng</span>
-                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo  $_SESSION["nguoidung"]["tennd"]; ?></span>
+                                <img class="img-profile rounded-circle" src="../../img/user/<?php echo $_SESSION['nguoidung']['hinhanh']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="../ktnguoidung/login.php">
+                                <a class="dropdown-item" href="../ktnguoidung/index.php?action=hoso&id=<?php echo $_SESSION['nguoidung']['id']; ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="../ktnguoidung/login.php" data-toggle="modal" data-target="#logoutModal">
+                                <!-- data-toggle="modal" -->
+                                <a class="dropdown-item" href="../ktnguoidung/index.php?action=dangnhap">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

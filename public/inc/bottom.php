@@ -1,4 +1,5 @@
 <section class="info_section  layout_padding2-top">
+    <div class="text-center mb-5"><a class="text-warning" href="#top"><i class="bi bi-chevron-up" style="font-size: 3rem; font-weight: bold; color:white;"></i></a></div>
     <div class="social_container">
         <div class="social_box">
             <a href="">
