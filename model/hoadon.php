@@ -66,7 +66,22 @@ class HOADON
     {
         $this->tinhtrang = $value;
     }
-
+    public function doitinhtrang($id, $tinhtrang)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "UPDATE hoadon set tinhtrang=:tinhtrang where id=:id";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':id', $id);
+            $cmd->bindValue(':tinhtrang', $tinhtrang);
+            $ketqua = $cmd->execute();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     // Lấy danh sách
     public function layhoadon()
     {
@@ -169,14 +184,15 @@ class HOADON
     //     }
     // }
     // Thêm mới
-    public function themhoadon($nguoidung_id, $tongtien)
+    public function themhoadon($nguoidung_id, $tongtien, $ngayhd)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO hoadon (nguoidung_id, tongtien) VALUES(:nguoidung_id,:tongtien)";
+            $sql = "INSERT INTO hoadon (nguoidung_id, tongtien, ngayhd) VALUES(:nguoidung_id,:tongtien,:ngayhd)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':nguoidung_id', $nguoidung_id);
             $cmd->bindValue(':tongtien', $tongtien);
+            $cmd->bindValue(':ngayhd', $ngayhd);
             $cmd->execute();
             $id = $db->lastInsertId();
             return $id;

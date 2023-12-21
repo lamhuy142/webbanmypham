@@ -5,6 +5,7 @@ if (!isset($_SESSION["nguoidung"]))
 require("../../model/database.php");
 require("../../model/hoadon.php");
 require("../../model/nguoidung.php");
+require("../../model/loainguoidung.php");
 
 
 // Xét xem có thao tác nào được chọn
@@ -16,6 +17,7 @@ if (isset($_REQUEST["action"])) {
 
 $hd = new HOADON();
 $nd = new NGUOIDUNG();
+$lnd = new LOAINGUOIDUNG();
 
 switch ($action) {
     case "xem":
@@ -23,15 +25,15 @@ switch ($action) {
         $hoadon = $hd->layhoadon();
         include("main.php");
         break;
-    case "xoa":
-        $xoa = new HOADON();
-        $xoa->setid($_GET["id"]);
-        $hoadon = $hd->xoahoadon($xoa);
+    // case "xoa":
+    //     $xoa = new HOADON();
+    //     $xoa->setid($_GET["id"]);
+    //     $hoadon = $hd->xoahoadon($xoa);
         
-        $nguoidung = $nd->laynguoidung();
-        $hoadon = $hd->layhoadon();
-        include("main.php");
-        break;
+    //     $nguoidung = $nd->laynguoidung();
+    //     $hoadon = $hd->layhoadon();
+    //     include("main.php");
+    //     break;
     case "khoa":
         if (isset($_REQUEST["id"]))
             $id = $_REQUEST["id"];
@@ -41,14 +43,15 @@ switch ($action) {
             $tinhtrang = "1";
         if ($tinhtrang == "1") {
             $tinhtrang = 0;
-            $nd->doitinhtrang($id, $tinhtrang);
+            $hd->doitinhtrang($id, $tinhtrang);
         } else {
             $tinhtrang = 1;
-            $nd->doitinhtrang($id, $tinhtrang);
+            $hd->doitinhtrang($id, $tinhtrang);
         }
         // load người dùng
         $loai = $lnd->layloainguoidung();
         $nguoidung = $nd->laynguoidung();
+        $hoadon = $hd->layhoadon();
         include("main.php");
         break;
     default:

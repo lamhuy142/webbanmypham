@@ -62,13 +62,9 @@
                                             <td class="text-secondary">Chờ xác nhận </td>
                                         <?php } elseif ($d["tinhtrang"] == 1) { ?>
                                             <td class="text-success">Đã xác nhận</td>
-                                        <?php } elseif ($d["tinhtrang"] == 2) { ?>
-                                            <td class="text-success">Đã gửi</td>
                                         <?php } else { ?><td class="text-success">Đã hoàn thành</td><?php } ?>
-
                                         <td>
-                                            <a href="index.php?action=khoa&id=<?php echo $n['id']; ?>&tinhtrang=<?php echo $n['tinhtrang']; ?>" class="btn btn-warning">Khóa</a>
-                                            <a href="index.php?action=xoa&id=<?php echo  $n['id']; ?>" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a>
+                                            <a href="index.php?action=khoa&id=<?php echo $d['id']; ?>&tinhtrang=<?php echo $d['tinhtrang']; ?>" class="btn btn-warning">Xác nhận</a>
                                         </td>
                                     </tr>
                         <?php

@@ -55,6 +55,11 @@ switch ($action) {
         // $loai = $lmp->layloaimypham();
         // $mypham = $mp->laymypham();
         include("about.php");
+    case "lienhe":
+
+        // $loai = $lmp->layloaimypham();
+        // $mypham = $mp->laymypham();
+        include("contact.php");
         break;
     case "search":
         if (isset($_POST["timkiem"])) {
@@ -62,8 +67,6 @@ switch ($action) {
             if ($ten_tk != "") {
                 // lấy thông tin sản phẩm
                 $mypham = $mp->timkiemmypham($ten_tk);
-                $id = $_SESSION["nguoidung"]["id"];
-                $sogio = $gh->demgiohang($id);
                 include("search.php");
             } else {
                 $id = $_SESSION["nguoidung"]["id"];
@@ -266,8 +269,9 @@ switch ($action) {
         $nguoidung_id = $_SESSION["nguoidung"]["id"];
         // lưu đơn hàng
         $dh = new HOADON();
+        $ngayhd = date("Y-m-d");
         $tongtien = tinhtiengiohang();
-        $donhang_id = $dh->themhoadon($nguoidung_id, $tongtien);
+        $donhang_id = $dh->themhoadon($nguoidung_id, $tongtien, $ngayhd);
 
         // lưu chi tiết đơn hàng
         $ct = new CHITITETHOADON();

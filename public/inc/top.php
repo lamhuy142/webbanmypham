@@ -71,7 +71,7 @@
                         <li class="nav-item
                         <?php if (strpos($_SERVER["REQUEST_URI"], "contact") != false) echo "active"; ?>
                         ">
-                            <a class="nav-link" href="contact.php">Liên Hệ</a>
+                            <a class="nav-link" href="index.php?action=lienhe">Liên Hệ</a>
                         </li>
                     </ul>
                     <form class="d-flex" method="post" action="index.php?action=search">
