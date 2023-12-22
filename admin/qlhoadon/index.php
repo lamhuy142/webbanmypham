@@ -25,35 +25,87 @@ switch ($action) {
         $hoadon = $hd->layhoadon();
         include("main.php");
         break;
-    // case "xoa":
-    //     $xoa = new HOADON();
-    //     $xoa->setid($_GET["id"]);
-    //     $hoadon = $hd->xoahoadon($xoa);
-        
-    //     $nguoidung = $nd->laynguoidung();
-    //     $hoadon = $hd->layhoadon();
-    //     include("main.php");
-    //     break;
+        // case "xoa":
+        //     $xoa = new HOADON();
+        //     $xoa->setid($_GET["id"]);
+        //     $hoadon = $hd->xoahoadon($xoa);
+
+        //     $nguoidung = $nd->laynguoidung();
+        //     $hoadon = $hd->layhoadon();
+        //     include("main.php");
+        //     break;
     case "khoa":
+        
         if (isset($_REQUEST["id"]))
             $id = $_REQUEST["id"];
         if (isset($_REQUEST["tinhtrang"]))
             $tinhtrang = $_REQUEST["tinhtrang"];
         else
             $tinhtrang = "1";
-        if ($tinhtrang == "1") {
-            $tinhtrang = 0;
-            $hd->doitinhtrang($id, $tinhtrang);
-        } else {
+        if ($tinhtrang == "0") {
             $tinhtrang = 1;
             $hd->doitinhtrang($id, $tinhtrang);
-        }
-        // load người dùng
+        } 
+            // load hóa đơn
         $loai = $lnd->layloainguoidung();
         $nguoidung = $nd->laynguoidung();
         $hoadon = $hd->layhoadon();
         include("main.php");
         break;
+    case "hoantat":
+
+        if (isset($_REQUEST["id"]))
+            $id = $_REQUEST["id"];
+        if (isset($_REQUEST["tinhtrang"]))
+        $tinhtrang = $_REQUEST["tinhtrang"];
+        else
+            $tinhtrang = "1";
+        if ($tinhtrang == "1") {
+            $tinhtrang = 2;
+            $hd->doitinhtrang($id, $tinhtrang);
+        }
+        //cập nhật thời gian giao hàng khi nhấn nút hoàn tất
+        $hodonsua = new HOADON();
+        $currentDateTime = date('Y-m-d H:i:s');
+        $hd->capnhatngaygiaohang($id, $currentDateTime);
+
+        // load hóa đơn
+        $loai = $lnd->layloainguoidung();
+        $nguoidung = $nd->laynguoidung();
+        $hoadon = $hd->layhoadon();
+        include("main.php");
+        break;
+    case "huydon":
+        if (isset($_REQUEST["id"]))
+            $id = $_REQUEST["id"];
+        if (isset($_REQUEST["tinhtrang"]))
+            $tinhtrang = $_REQUEST["tinhtrang"];
+        else
+            $tinhtrang = "1";
+        $tinhtrang = 3;
+        $hd->doitinhtrang($id, $tinhtrang);
+        // load hóa đơn
+        $loai = $lnd->layloainguoidung();
+        $nguoidung = $nd->laynguoidung();
+        $hoadon = $hd->layhoadon();
+        include("main.php");
+        break;
+    // case "xemchitiethd":
+    //     if (isset($_REQUEST["txthoadon_id"]))
+    //         $id = $_REQUEST["txthoadon_id"];
+    //     if (isset($_REQUEST["id_hd"]))
+    //         $id_hd = $_REQUEST["id_hd"];
+    //     if($id == $id_hd)
+        
+    //     include("");
+
+    //     // load hóa đơn
+    //     $loai = $lnd->layloainguoidung();
+    //     $nguoidung = $nd->laynguoidung();
+    //     $hoadon = $hd->layhoadon();
+    //     include("main.php");
+    //     break;
+        
     default:
         break;
 }

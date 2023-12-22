@@ -269,4 +269,20 @@ class HOADON
             exit();
         }
     }
+    public function capnhatngaygiaohang($id, $ngaygiaohang)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "UPDATE hoadon SET ngaygiaohang = :ngaygiaohang WHERE id=:id";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":ngaygiaohang", $ngaygiaohang);
+            $cmd->bindValue(":id", $id);
+            $result = $cmd->execute();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 }
