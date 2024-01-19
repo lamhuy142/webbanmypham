@@ -9,29 +9,8 @@
             <input type="hidden" name="txtid" value="<?php echo $_SESSION["nguoidung"]["id"]; ?>">
             <input type="hidden" name="action" value="luudonhang">
             <div class="row g-3">
-                <div class="col-md-12 col-lg-6 col-xl-4 bg-dark rounded-4">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-6">
-                            <div class="form-item w-100">
-                                <label class="form-label my-3">Email<sup>*</sup></label>
-                                <input type="text" class="form-control" name="txtemail" value="<?php echo $_SESSION["nguoidung"]["email"]; ?>" disabled>
-                            </div>
-                        </div>
-                        <div class=" col-md-12 col-lg-6">
-                            <div class="form-item w-100">
-                                <label class="form-label my-3">Số điện thoại<sup>*</sup></label>
-                                <input type="text" class="form-control" name="txtsodienthoai" value="<?php echo $_SESSION["nguoidung"]["sdt"] ?>" disabled>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-item">
-                        <label class="form-label my-3">Họ tên<sup>*</sup></label>
-                        <input type="text" class="form-control" name="txthoten" value="<?php echo $_SESSION["nguoidung"]["tennd"]; ?>" disabled>
-                    </div>
-                    <div class="form-item">
-                        <label class="form-label my-3">Địa chỉ <sup>*</sup></label>
-                        <input type="text" class="form-control" id="diachi" placeholder="Địa chỉ" name="txtdiachi" value="<?php echo $_SESSION['nguoidung']['diachi']; ?>" disabled>
-                    </div>
+                <div class="col-md-12 col-lg-6 col-xl-4 bg-light rounded-4">
+                    <img  class="text-center rounded-circle" src="../img/user/<?php echo $_SESSION["nguoidung"]["hinhanh"];   ?>" alt="">
                 </div>
             <?php } ?>
             <div class="col-md-12 col-lg-6 col-xl-8">
