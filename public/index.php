@@ -51,7 +51,7 @@ switch ($action) {
         include("main.php");
         break;
     case "gioithieu":
-        
+
         // $loai = $lmp->layloaimypham();
         // $mypham = $mp->laymypham();
         include("about.php");
@@ -80,7 +80,7 @@ switch ($action) {
     case "xemtatca":
 
         $mypham = $mp->laymypham();
-        
+
         // $id = $_SESSION["nguoidung"]["id"];
         // $sogio = $gh->demgiohang($id);
         include("shop.php");
@@ -123,6 +123,11 @@ switch ($action) {
         $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email);
         $giohang = laygiohang();
         include("profile.php");
+        break;
+    case "donmua":
+        // $id = $_SESSION["nguoidung"]["id"];
+        // $sogio = $gh->demgiohang($id);
+        include("order.php");
         break;
     case "dangnhap":
         include("login.php");
@@ -233,8 +238,43 @@ switch ($action) {
         $nguoidung = $nd->laynguoidung();
         include("cart.php");
         break;
+    case "giamsoluong":
+        if (isset($_REQUEST["id"])) {
+            $mh = $_REQUEST["id"];
+            giamsoluong($mh);
+        }
+        $giohang = laygiohang();
+        $dh_dadat = $cthd->laychitiethoadon();
+        $mypham = $mp->laymypham();
+        $donhang = $hd->layhoadon();
+        $nguoidung = $nd->laynguoidung();
+        include("cart.php");
+        break;
+    case "tangsoluong":
+        if (isset($_REQUEST["id"])) {
+            $mh = $_REQUEST["id"];
+            tangsoluong($mh);
+        }
+        $giohang = laygiohang();
+        $dh_dadat = $cthd->laychitiethoadon();
+        $mypham = $mp->laymypham();
+        $donhang = $hd->layhoadon();
+        $nguoidung = $nd->laynguoidung();
+        include("cart.php");
+        break;
     case "xoagiohang":
         xoagiohang();
+        $giohang = laygiohang();
+        $dh_dadat = $cthd->laychitiethoadon();
+        $mypham = $mp->laymypham();
+        $donhang = $hd->layhoadon();
+        $nguoidung = $nd->laynguoidung();
+        include("cart.php");
+        break;
+    case "xoamathang":
+
+        $mh = $_REQUEST["id"];
+        xoamotmathang($mh);
         $giohang = laygiohang();
         $dh_dadat = $cthd->laychitiethoadon();
         $mypham = $mp->laymypham();

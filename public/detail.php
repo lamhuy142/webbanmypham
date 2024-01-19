@@ -59,27 +59,24 @@
                     </div>
                     <div class="mb-3">
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <form method="post">
-                                <input type="hidden" name="action" value="chovaogio">
-                                <input type="hidden" name="id" value="<?php echo $m["id"]; ?>">
-                                <input class="btn btn-outline-dark flex-shrink-0 mt-3" type="submit" name="btnchonmua" value="Thêm vào giỏ hàng">
-                            </form>
+
+                            <input class="btn btn-outline-dark flex-shrink-0 mt-3" type="submit" value="Thêm vào giỏ hàng">
                             <button class="btn btn-danger flex-shrink-0 mt-3 " type="button">
                                 Mua ngay
                             </button>
                         </div>
-                        <!-- <button class="btn btn-outline-dark flex-shrink-0 mt-3" type="button">
-                            <i class="bi-cart-fill"></i>
-                            Thêm vào giỏ hàng
-                        </button> -->
-
-
                     </div>
                 </form>
             </div>
         </div>
+        <br>
+        <div class="row">
+            <h1 class="text-dark fw-bolder">Mô Tả</h1>
+            <p><?php echo $mpct["mota"]; ?></p>
+        </div>
     </div>
 </section>
+
 <!-- Related items section-->
 <section class="py-5 bg-light">
     <div class="container px-4 px-lg-5 mt-5">

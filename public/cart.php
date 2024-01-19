@@ -36,29 +36,31 @@
                                         <p class="mb-0 mt-4"><?php echo number_format($mh["giaban"]); ?>đ</p>
                                     </td>
                                     <td>
-                                        <!-- <div class="input-group quantity mt-4" style="width: 100px;"> -->
-                                        <!-- <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div> -->
-                                    <td><input class="form-control text-center" type="number" name="mh[<?php echo $id; ?>]" id="" value="<?php echo $mh["soluong"]; ?>"> </td>
-                                    <!-- <input type="number" name="mh[<php echo $id; ?>]" class="form-control form-control-sm text-center border-0" value="<php echo $mh['soluong']; ?>"> -->
-                                    <!-- <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div> -->
-                                    <!-- </div> -->
+                                        <div class="input-group quantity mt-4" style="width: 100px;">
+                                            <div class="input-group-btn">
+                                                <a href="index.php?action=giamsoluong&id=<?php echo $id; ?>" class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                    <i class="bi bi-dash-circle-fill"></i>
+                                                </a>
+                                            </div>
+                                            <input type="text" class="form-control form-control-sm text-center border-0" value="<?php echo $mh['soluong']; ?>">
+                                            <div class="input-group-btn">
+                                                <a href="index.php?action=tangsoluong&id=<?php echo $id; ?>" class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                    <i class="bi bi-plus-circle-fill"></i>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </td>
+                                    <!-- <td>
+                                        <input class="form-control text-center" type="number" name="mh[<php echo $id; ?>]" id="" value="<php echo $mh["soluong"]; ?>">
+                                    </td> -->
                                     <td>
                                         <p class="mb-0 mt-4"><?php echo number_format($mh['thanhtien']); ?>đ</p>
                                     </td>
                                     <td>
 
-                                        <button class="btn btn-md rounded-circle bg-light border mt-4">
+                                        <a href="index.php?action=xoamathang&id=<?php echo $id; ?>" class="btn btn-md rounded-circle bg-light border mt-4">
                                             <i class="fa fa-times text-danger"></i>
-                                        </button>
+                                        </a>
 
 
 

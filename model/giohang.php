@@ -26,6 +26,32 @@ function capnhatsoluong($id, $soluong)
         $_SESSION['giohang'][$id] = round($soluong, 0);
     }
 }
+function giamsoluong($id)
+{
+    $soluong = $_SESSION['giohang'][$id];
+    if (isset($_SESSION['giohang'][$id])) {
+       // $_SESSION['giohang'][$id] = $soluong - 1;
+        $soluong = round($soluong - 1  ,0);
+        $soluong = intval($soluong); // Chuyển đổi giá trị thành integer
+    }
+    if($soluong <= 0){
+        xoamotmathang($id);
+    }
+    capnhatsoluong($id, $soluong);
+}
+function tangsoluong($id)
+{
+    $soluong = $_SESSION['giohang'][$id];
+    if (isset($_SESSION['giohang'][$id])) {
+        // $_SESSION['giohang'][$id] = $soluong - 1;
+        $soluong = round($soluong + 1, 0);
+        $soluong = intval($soluong); // Chuyển đổi giá trị thành integer
+    }
+    if ($soluong <= 0) {
+        xoamotmathang($id);
+    }
+    capnhatsoluong($id, $soluong);
+}
 
 // Xóa một sản phẩm trong giỏ hàng
 function xoamotmathang($id)
@@ -77,6 +103,19 @@ function demsoluongtronggio()
     $giohang = laygiohang();
     foreach ($giohang as $item) {
         $tongsl += $item['soluong'];
+    }
+    return $tongsl;
+}
+function demsoluong($idsp)
+{
+    $tongsl = 0;
+    //Lấy mảng các sản phẩm từ trong SESSION
+    $giohang = laygiohang();
+    foreach ($giohang as $item) {
+        if($item == $idsp)
+            $tongsl += $item['soluong'];
+        // else
+        //     $tongsl = $tongsl * 1;
     }
     return $tongsl;
 }

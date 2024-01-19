@@ -90,8 +90,9 @@
                                             <?php echo $_SESSION["nguoidung"]["tennd"]; ?>
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-secondary" aria-labelledby="navbarDarkDropdownMenuLink">
-                                            <li><a class="dropdown-item" href="index.php?action=hoso&id=<?php echo $_SESSION["nguoidung"]["id"] ?>">Profile</a></li>
-                                            <li><a class="dropdown-item" href="index.php?action=dangxuat">Logout</a></li>
+                                            <li><a class="dropdown-item" href="index.php?action=hoso&id=<?php echo $_SESSION["nguoidung"]["id"] ?>">Thông Tin</a></li>
+                                            <li><a class="dropdown-item" href="index.php?action=dangxuat">Đăng Xuất</a></li>
+                                            <li><a class="dropdown-item" href="index.php?action=donmua">Đơn Mua</a></li>
                                         </ul>
                                     </li>
                                 </ul>
