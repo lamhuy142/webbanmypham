@@ -2,7 +2,7 @@
 class MYPHAM
 {
     // khai báo các thuộc tính
-    private $id;
+    private $idmp;
     private $tenmp;
     private $loai_id;
     private $thuonghieu;
@@ -18,13 +18,13 @@ class MYPHAM
     private $tinhtrang;
     private $hinhanh;
     
-    public function getid()
+    public function getidmp()
     {
-        return $this->id;
+        return $this->idmp;
     }
-    public function setid($value)
+    public function setidmp($value)
     {
-        $this->id = $value;
+        $this->idmp = $value;
     }
     public function gettenmp()
     {
@@ -146,7 +146,7 @@ class MYPHAM
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM mypham ORDER BY id DESC ";
+            $sql = "SELECT * FROM mypham ORDER BY idmp DESC ";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -194,13 +194,13 @@ class MYPHAM
     }
 
     // Lấy mặt hàng theo id
-    public function laymyphamtheoid($id)
+    public function laymyphamtheoid($idmp)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM mypham WHERE id=:id";
+            $sql = "SELECT * FROM mypham WHERE idmp=:idmp";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":id", $id);
+            $cmd->bindValue(":idmp", $idmp);
             $cmd->execute();
             $result = $cmd->fetch();
             return $result;
@@ -211,13 +211,13 @@ class MYPHAM
         }
     }
     // Cập nhật lượt xem
-    public function tangluotxem($id)
+    public function tangluotxem($idmp)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE mypham SET luotxem=luotxem+1 WHERE id=:id";
+            $sql = "UPDATE mypham SET luotxem=luotxem+1 WHERE idmp=:idmp";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":id", $id);
+            $cmd->bindValue(":idmp", $idmp);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -275,9 +275,9 @@ VALUES(:tenmp,:loai_id,:thuonghieu,:hinhanh1,:hinhanh2,:hinhanh3,:giagoc,:giaban
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "DELETE FROM mypham WHERE id=:id";
+            $sql = "DELETE FROM mypham WHERE idmp=:idmp";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":id", $mypham->id);
+            $cmd->bindValue(":idmp", $mypham->idmp);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -330,14 +330,14 @@ VALUES(:tenmp,:loai_id,:thuonghieu,:hinhanh1,:hinhanh2,:hinhanh3,:giagoc,:giaban
             exit();
         }
     }
-    public function capnhatsoluong($id, $soluong)
+    public function capnhatsoluong($idmp, $soluong)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE mypham SET soluong=soluong - :soluong WHERE id=:id";
+            $sql = "UPDATE mypham SET soluong=soluong - :soluong WHERE idmp=:idmp";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":soluong", $soluong);
-            $cmd->bindValue(":id", $id);
+            $cmd->bindValue(":idmp", $idmp);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -346,4 +346,38 @@ VALUES(:tenmp,:loai_id,:thuonghieu,:hinhanh1,:hinhanh2,:hinhanh3,:giagoc,:giaban
             exit();
         }
     }
+    // Hàm gợi ý sản phẩm
+    public function getRecommendedProducts($userPreferences) 
+    {
+        //global $conn;
+        $dbcon = DATABASE::connect();
+        try{
+            // Chuyển đổi các thuộc tính người dùng thành câu truy vấn SQL
+        $preferences = implode("', '", $userPreferences);
+        
+        // Truy vấn MySQL để lấy sản phẩm gợi ý dựa trên thuộc tính
+        $sql = "SELECT * FROM mypham WHERE attribute IN ('$preferences') ORDER BY RAND() LIMIT 5";
+        $cmd = $dbcon->prepare($sql);
+        $result = $cmd->execute();
+            return $result;
+        }catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+        
+        //$result = $conn->query($sql);
+        
+        // if ($result->num_rows > 0) {
+        //     while($row = $result->fetch_assoc()) {
+        //         echo "<p><strong>" . $row["product_name"]. "</strong><br>" . $row["description"]. "</p>";
+        //     }
+        // } else {
+        //     echo "Không có sản phẩm gợi ý.";
+        // }
+    }
+
+        // // Thử nghiệm
+        // $userPreferences = ['moisturizing', 'organic'];
+        // getRecommendedProducts($userPreferences);
 }

@@ -2,7 +2,7 @@
 class NGUOIDUNG
 {
     // khai báo các thuộc tính
-    private $id;
+    private $idnd;
     private $matkhau;
     private $loaind_id;
     private $diachi;
@@ -12,13 +12,13 @@ class NGUOIDUNG
     private $tinhtrang;
     private $tennd;
 
-    public function getid()
+    public function getidnd()
     {
-        return $this->id;
+        return $this->idnd;
     }
-    public function setid($value)
+    public function setidnd($value)
     {
-        $this->id = $value;
+        $this->idnd = $value;
     }
     public function getmatkhau()
     {
@@ -126,7 +126,7 @@ class NGUOIDUNG
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM nguoidung ORDER BY id DESC ";
+            $sql = "SELECT * FROM nguoidung ORDER BY idnd DESC ";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -142,7 +142,7 @@ class NGUOIDUNG
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM nguoidung n, loainguoidung l where n.loaind_id = l.id AND n.tennd like '%$search%'  "; //OR p.tenpl like '%$search%'
+            $sql = "SELECT * FROM nguoidung n, loainguoidung l where n.loaind_id = l.idnd AND n.tennd like '%$search%'  "; //OR p.tenpl like '%$search%'
             $cmd = $dbcon->prepare($sql);
             // $cmd->bindValue(":tenmp", $search);
             $cmd->execute();
@@ -174,13 +174,13 @@ class NGUOIDUNG
     }
 
     // Lấy mặt hàng theo id
-    public function laynguoidungtheoid($id)
+    public function laynguoidungtheoid($idnd)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM nguoidung WHERE id=:id";
+            $sql = "SELECT * FROM nguoidung WHERE idnd=:idnd";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":id", $id);
+            $cmd->bindValue(":idnd", $idnd);
             $cmd->execute();
             $result = $cmd->fetch();
             return $result;
@@ -192,13 +192,13 @@ class NGUOIDUNG
     }
     
     // // Cập nhật lượt xem
-    // public function tangluotxem($id)
+    // public function tangluotxem($idnd)
     // {
     //     $dbcon = DATABASE::connect();
     //     try {
     //         $sql = "UPDATE nguoidung SET luotxem=luotxem+1 WHERE id=:id";
     //         $cmd = $dbcon->prepare($sql);
-    //         $cmd->bindValue(":id", $id);
+    //         $cmd->bindValue(":id", $idnd);
     //         $result = $cmd->execute();
     //         return $result;
     //     } catch (PDOException $e) {
@@ -253,9 +253,9 @@ VALUES(:matkhau,:loaind_id,:diachi,:email,:sdt,:hinhanh,:tinhtrang,:tennd)";
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "DELETE FROM nguoidung WHERE id=:id";
+            $sql = "DELETE FROM nguoidung WHERE idnd=:idnd";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":id", $nguoidung->id);
+            $cmd->bindValue(":idnd", $nguoidung->idnd);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -296,13 +296,13 @@ VALUES(:matkhau,:loaind_id,:diachi,:email,:sdt,:hinhanh,:tinhtrang,:tennd)";
     //         exit();
     //     }
     // }
-    public function capnhatnguoidung($id, $email, $sodt, $tennd, $hinhanh, $diachi)
+    public function capnhatnguoidung($idnd, $email, $sodt, $tennd, $hinhanh, $diachi)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE nguoidung set tennd=:tennd, email=:email,sdt=:sodt, hinhanh=:hinhanh, diachi=:diachi where id=:id";
+            $sql = "UPDATE nguoidung set tennd=:tennd, email=:email,sdt=:sodt, hinhanh=:hinhanh, diachi=:diachi where idnd=:idnd";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':id', $id);
+            $cmd->bindValue(':idnd', $idnd);
             $cmd->bindValue(':email', $email);
             $cmd->bindValue(':sodt', $sodt);
             $cmd->bindValue(':tennd', $tennd);
@@ -316,13 +316,13 @@ VALUES(:matkhau,:loaind_id,:diachi,:email,:sdt,:hinhanh,:tinhtrang,:tennd)";
             exit();
         }
     }
-    public function doitinhtrang($id, $tinhtrang)
+    public function doitinhtrang($idnd, $tinhtrang)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE nguoidung set tinhtrang=:tinhtrang where id=:id";
+            $sql = "UPDATE nguoidung set tinhtrang=:tinhtrang where idnd=:idnd";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':id', $id);
+            $cmd->bindValue(':idnd', $idnd);
             $cmd->bindValue(':tinhtrang', $tinhtrang);
             $ketqua = $cmd->execute();
             return $ketqua;

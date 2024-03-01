@@ -12,12 +12,12 @@
       </div>
       <div class="row">
         <?php foreach ($mypham as $m) :
-          if ($m["loai_id"] == $l["id"] && $i < 4) {
+          if ($m["loai_id"] == $l["idlmp"] && $i < 4) {
             $i++; ?>
             <div class="col-sm-6 col-md-4 col-lg-3">
               <div class="card">
                 <!-- Top Card -->
-                <a href="index.php?action=chitiet&id=<?php echo $m["id"]; ?>">
+                <a href="index.php?action=chitiet&idmp=<?php echo $m["idmp"]; ?>">
                   <img width="80px" height="300px" class=" card-img-top" src="../img/products/<?php echo $m['hinhanh']; ?>" alt="">
 
                   <!-- End Top Card -->
@@ -69,7 +69,7 @@
               <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                 <form method="post">
                   <input type="hidden" name="action" value="chovaogio">
-                  <input type="hidden" name="id" value="<?php echo $m["id"]; ?>">
+                  <input type="hidden" name="idmp" value="<?php echo $m["idmp"]; ?>">
                   <input class="form-control  btn btn-outline-info mt-auto" type="submit" name="btnchonmua" value="Chọn mua">
                 </form>
               </div>

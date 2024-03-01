@@ -1,17 +1,17 @@
 <?php
 class LOAIMYPHAM
 {
-    private $id;
+    private $idlmp;
     private $tenloai;
 
-    public function getid()
+    public function getidlmp()
     {
-        return $this->id;
+        return $this->idlmp;
     }
 
-    public function setid($value)
+    public function setidlmp($value)
     {
-        $this->id = $value;
+        $this->idlmp = $value;
     }
 
     public function gettenloai()
@@ -43,13 +43,13 @@ class LOAIMYPHAM
 
 
     // Lấy danh mục theo id
-    public function layloaimyphamtheoid($id)
+    public function layloaimyphamtheoid($idlmp)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM loaimypham WHERE id=:id";
+            $sql = "SELECT * FROM loaimypham WHERE idlmp=:idlmp";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":id", $id);
+            $cmd->bindValue(":idlmp", $idlmp);
             $cmd->execute();
             $result = $cmd->fetch();
             return $result;
@@ -80,9 +80,9 @@ class LOAIMYPHAM
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "DELETE FROM loaimypham WHERE id=:id";
+            $sql = "DELETE FROM loaimypham WHERE idlmp=:idlmp";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":id", $loaimypham->id);
+            $cmd->bindValue(":idlmp", $loaimypham->idlmp);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -96,10 +96,10 @@ class LOAIMYPHAM
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE loaimypham SET tenloai=:tenloai WHERE id=:id";
+            $sql = "UPDATE loaimypham SET tenloai=:tenloai WHERE idlmp=:idlmp";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":tenloai", $loaimypham->tenloai);
-            $cmd->bindValue(":id", $loaimypham->id);
+            $cmd->bindValue(":idlmp", $loaimypham->idlmp);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
