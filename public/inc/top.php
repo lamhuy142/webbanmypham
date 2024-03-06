@@ -28,6 +28,7 @@
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="../public/inc/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../public/inc/css/csschatbot.css" />
     <!-- Custom styles for this template /css/style.css-->
     <link href="../public/inc/css/style.css" rel="stylesheet" />
     <!--responsive style /css/responsive.css-->

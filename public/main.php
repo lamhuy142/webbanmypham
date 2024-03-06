@@ -93,7 +93,6 @@
 <!-- end shop section -->
 
 
-
 <!-- contact section -->
 
 <section class="contact_section ">
